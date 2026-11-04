@@ -153,3 +153,55 @@ body[data-side="company"] .hp{color:#F2A541}
 /* Top bar Map button */
 .top .right{display:flex;align-items:center;justify-content:flex-end;gap:10px}
 .topmap[aria-pressed="true"]{background:var(--prs);color:var(--pr2);font-weight:600}
+
+/* Company side: the NEhelp pun strip and partner banner */
+.card .top2{margin-bottom:6px}
+.pun{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap}
+.pun .t{background:#12263A;color:#fff;border-radius:14px;padding:12px 18px;font-weight:800;font-size:20px;letter-spacing:-.02em;display:flex;flex-direction:column;gap:2px;justify-content:center}
+.pun .t small{font-size:12px;font-weight:600;letter-spacing:0;color:#8FDCD6}
+.pun .ar{align-self:center;color:var(--am);font-weight:800;font-size:22px}
+.pun .am{color:#F2A541}.pun .sg{color:#14B5AE}
+.pun.big .t{font-size:28px;padding:18px 24px}
+.pun.mini .t{padding:8px 14px;font-size:16px}.pun.mini small{display:none}
+.nebanner{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:18px 20px;margin-bottom:20px}
+
+/* Navbar: logo link, map link, role switch */
+a.brand{text-decoration:none}
+.rolesw{display:inline-flex;background:var(--sf2);border-radius:12px;padding:3px;gap:2px}
+.rolesw button{border:0;background:none;padding:7px 14px;border-radius:9px;cursor:pointer;font-weight:600;font-size:14px;color:var(--mu)}
+.rolesw button[aria-pressed="true"]{background:var(--pr);color:var(--on)}
+.rolesw .sm{display:none}
+@media (max-width:560px){.rolesw .lg{display:none}.rolesw .sm{display:inline}.rolesw button{padding:7px 10px}.brand span{display:none}.top{padding:0 10px}.topmap{display:none}}
+/* Info sections, quick links, account */
+.quick{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.infogrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:32px}
+.infocard{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:20px}
+.infocard.wide{grid-column:1/-1}
+.infocard h3{font-size:18px;margin-bottom:12px}
+.infocard .more{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.linklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.linklist li{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.actlist{list-style:none;margin:0;padding:0}
+.actlist li{display:flex;gap:12px;padding:9px 0;border-top:1px solid var(--bd)}
+.actlist li:first-child{border-top:0}
+.actlist small{display:block;color:var(--mu);font-size:13px}
+.dotm{width:10px;height:10px;border-radius:50%;background:var(--pr);margin-top:7px;flex:none}
+.mrow{display:flex;align-items:center;gap:12px;margin:8px 0}
+.mrow span{min-width:90px;font-size:14px}
+.meter{flex:1;height:10px;background:var(--sf2);border-radius:5px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--pr);border-radius:5px}
+details{border-top:1px solid var(--bd);padding:10px 0}
+details:first-of-type{border-top:0}
+summary{cursor:pointer;font-weight:600}
+details p{margin-top:6px;color:var(--mu);font-size:15px}
+.minimap{height:280px;border-radius:12px;border:1px solid var(--bd);overflow:hidden;position:relative}
+.signedin{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--prs);color:var(--pr2);border-radius:14px;padding:14px 18px;margin-bottom:28px}
+.acgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+.acside{display:flex;flex-direction:column;gap:16px}
+.avbig{width:56px;height:56px;border-radius:50%;background:var(--prs);color:var(--pr2);display:grid;place-items:center;font-weight:800;font-size:20px}
+.tog{gap:10px;padding:8px 0}
+@media (max-width:900px){.acgrid{grid-template-columns:1fr}}
+/* Links that look like buttons */
+a.btn,a.tbtn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+a.tbtn{color:var(--tx)}
+a.btn.out{color:var(--pr)}

@@ -1,23 +1,57 @@
 <!doctype html>
-<!--
-  PLACEHOLDER: company login page.
-  A teammate is building this page. Replace this whole file with their HTML.
-  The landing page's "Log in as a company" button links here (/company.html).
-  Shared styles are in css/nehelp.css if you want the same look.
--->
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>NEhelp · Company login</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/nehelp.css">
 </head>
 <body>
-<main style="max-width:520px;margin:80px auto;padding:0 16px">
-  <h1>Company login</h1>
-  <p class="hint">This page is being built. Check back soon.</p>
-  <p style="margin-top:24px"><a class="btn out" href="/" style="text-decoration:none">Back to NEhelp</a></p>
+<header class="top">
+  <div></div>
+  <a class="brand" href="/#home" aria-label="NEhelp home" style="text-decoration:none"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--ink)"/><circle cx="12.5" cy="16" r="7" fill="#14B5AE"/><circle cx="19.5" cy="16" r="7" fill="#F2A541" opacity=".92"/></svg><span>NE<span class="hp">help</span></span></a>
+  <div style="justify-self:end"><a class="tbtn" href="/map.html">Map</a></div>
+</header>
+<main class="land" style="max-width:960px">
+  <div class="hero" style="gap:40px;align-items:start">
+    <div>
+      <h1>Help local businesses on your terms.</h1>
+      <p class="lead">Log in to see requests from small businesses in the North East that fit your team, make offers, and keep every agreement in one place.</p>
+      <div class="pun mini" style="margin-top:28px" role="img" aria-label="NEhelp sounds like any help, and it means North East help"><span class="t"><span><span class="am">NE</span><span class="sg">help</span></span></span><span class="ar">→</span><span class="t"><span>any help</span></span><span class="ar">→</span><span class="t"><span>North East help</span></span></div>
+    </div>
+    <form class="panel" id="login" novalidate>
+      <h2 style="font-size:24px;margin-bottom:16px">Company login</h2>
+      <label class="field"><span>Work email (optional in this demo)</span><input type="email" id="email" placeholder="partnerships@yourcompany.co.uk" autocomplete="email"></label>
+      <label class="field"><span>Six-digit code (optional in this demo)</span><input type="text" id="code" class="codes" inputmode="numeric" maxlength="6" placeholder="000000" autocomplete="one-time-code"><span class="hint" style="font-weight:400;margin-top:6px">You can leave this blank and carry on.</span></label>
+            <div class="row"><button class="btn pri" type="submit">Log in</button></div>
+      <p class="hint" style="margin-top:20px"><a href="/map.html" style="color:var(--pr);font-weight:600">Browse the map</a> · New to NEhelp? <a href="/" id="join" style="color:var(--pr);font-weight:600">Join as a company</a></p>
+    </form>
+  </div>
 </main>
+
+<script src="js/state.js"></script>
+<script>
+// Uses the same saved state as the main app, so logging in here carries straight into the company dashboard.
+(function () {
+  function enter(email) {
+    if (email) S.company.email = email;
+    S.role = "company";
+    save();
+    location.href = "/#" + (S.company.onboarded ? "c-requests" : "c-onboarding");
+  }
+  document.getElementById("login").addEventListener("submit", function (e) {
+    e.preventDefault();
+    // Demo: the email and code are optional, so there are never any errors here.
+    enter(document.getElementById("email").value.trim());
+  });
+  document.getElementById("join").addEventListener("click", function (e) {
+    e.preventDefault();
+    enter("");
+  });
+})();
+</script>
 </body>
 </html>

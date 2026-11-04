@@ -174,3 +174,8 @@ button.primary:disabled { opacity: 0.6; cursor: wait; }
 .quote { font-size: 0.8125rem; color: var(--muted); font-style: italic; margin: 2px 0 0 15px; }
 
 .leaflet-popup-content { font: 14px/1.4 system-ui, sans-serif; }
+
+.brand { text-decoration: none; color: inherit; }
+.toplinks { display: flex; flex-wrap: wrap; gap: 4px; }
+.toplinks a { color: var(--text); text-decoration: none; padding: 6px 10px; border-radius: 8px; font-size: 0.875rem; font-weight: 600; }
+.toplinks a:hover { background: var(--banner-bg); }

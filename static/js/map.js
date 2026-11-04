@@ -36,3 +36,14 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,att
 loadBiz(function(list){if(!bizMap)return;var pts=[];
 list.forEach(function(b){L.circleMarker([b.lat,b.lng],{radius:b.claimed?9:6,color:"#fff",weight:2,fillColor:b.claimed?"#14B5AE":"#F2A541",fillOpacity:.95}).bindPopup("<b>"+esc(b.name)+"</b><br>"+esc(b.type+" · "+b.area)+bizTags(b)).addTo(bizMap);pts.push([b.lat,b.lng])});
 if(pts.length)bizMap.fitBounds(pts,{padding:[30,30]})})}
+
+// Small preview map used on the landing page and both dashboards (the #minimap card).
+var miniMap=null;
+function drawMini(){var el=document.getElementById("minimap");if(!el)return;
+if(typeof L==="undefined"){el.innerHTML='<p class="hint" style="padding:16px">The map needs an internet connection. <a href="/map.html">Open the map page</a>.</p>';return}
+if(miniMap){try{miniMap.remove()}catch(e){}miniMap=null}
+miniMap=L.map(el,{scrollWheelZoom:false}).setView([54.975,-1.6],12);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · Hygiene ratings: FSA, OGL v3.0'}).addTo(miniMap);
+loadBiz(function(list){if(!miniMap)return;var pts=[];
+list.forEach(function(b){L.circleMarker([b.lat,b.lng],{radius:b.claimed?9:6,color:"#fff",weight:2,fillColor:b.claimed?"#14B5AE":"#F2A541",fillOpacity:.95}).bindPopup("<b>"+esc(b.name)+"</b><br>"+esc(b.type+" · "+b.area)+bizTags(b)).addTo(miniMap);pts.push([b.lat,b.lng])});
+if(pts.length)miniMap.fitBounds(pts,{padding:[30,30]})})}
