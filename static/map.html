@@ -1,9 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NEhelp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="map-page.css">
 </head>
@@ -16,7 +19,7 @@
         <p class="tagline">Small businesses and the people who can help them, on one map.</p>
       </div>
     </a>
-    <nav class="toplinks" aria-label="Other pages"><a href="/#home">Home</a><a href="/#b-issues">Small business dashboard</a><a href="/#c-requests">Company dashboard</a><a href="/company.html">Company login</a></nav>
+    <nav class="toplinks" aria-label="Other pages"><a href="/#home">Home</a><a href="/#b-issues">Small business dashboard</a><a href="/#c-requests">Company dashboard</a></nav>
     <div class="roles" role="tablist" aria-label="Choose who you are">
       <button role="tab" data-role="owner" aria-selected="true">I run a small business</button>
       <button role="tab" data-role="provider" aria-selected="false">I'm a provider</button>
@@ -25,7 +28,6 @@
 
   <div class="sample-banner">
     Businesses not signed up are real, with <b>names changed</b>. Signed-up profiles, providers and ratings are made up for the demo.
-    Hygiene ratings: Food Standards Agency, Open Government Licence v3.0. Business data © OpenStreetMap contributors (ODbL).
   </div>
 
   <main class="layout">
@@ -41,14 +43,21 @@
         <div id="business-header" class="card"></div>
 
         <div class="card private">
-          <h2>🔒 Only you can see this</h2>
+          <h2><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>Only you can see this</h2>
           <p class="muted">Guesses we made from public data. Providers never see these.</p>
           <ul id="signals"></ul>
         </div>
 
         <div class="card">
+          <h2>Ask the adviser</h2>
+          <p class="muted">Claude looks at your profile and tells you honestly what you need, including what you can skip.</p>
+          <button id="advise" class="primary">What do I actually need?</button>
+          <div id="advice" aria-live="polite"></div>
+        </div>
+
+        <div class="card">
           <h2>Your needs</h2>
-          <p class="muted">Tick what you use and how it's going. Switch on <b>Show providers</b> for anything you'd like offers for.</p>
+          <p class="muted">Say what you use and how it's going. Switch on <b>Show providers</b> for anything you'd like offers for. Your current provider only sees your rating if you choose that separately.</p>
           <div id="needs-form"></div>
           <div class="actions">
             <button id="save-needs" class="primary">Save</button>
@@ -56,12 +65,6 @@
           </div>
         </div>
 
-        <div class="card">
-          <h2>✨ Ask the adviser</h2>
-          <p class="muted">Claude looks at your profile and tells you honestly what you need, including what you can skip.</p>
-          <button id="advise" class="primary">What do I actually need?</button>
-          <div id="advice" aria-live="polite"></div>
-        </div>
       </section>
 
       <!-- Provider view -->
@@ -79,6 +82,8 @@
       </section>
     </aside>
   </main>
+
+  <footer class="sources">Hygiene ratings: Food Standards Agency, Open Government Licence v3.0. Business data © OpenStreetMap contributors (ODbL).</footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="map-page.js"></script>

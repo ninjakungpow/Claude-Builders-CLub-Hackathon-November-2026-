@@ -135,6 +135,10 @@ dialog::backdrop{background:rgba(5,12,9,.55)}
 .scrim.open{display:block;position:fixed;inset:0;z-index:35;background:rgba(5,12,9,.45)}
 .cards.list .card{flex-direction:column;align-items:stretch}
 }
+.topmap[hidden]{display:none}
+.menu.fromburger{position:fixed;left:12px;right:auto;top:calc(env(safe-area-inset-top,0px) + 64px)}
+@media (min-width:761px){.shell.noside{grid-template-columns:minmax(0,1fr) 288px}.shell.noside .side{display:none}}
+@media (min-width:761px) and (max-width:1100px){.shell.noside{grid-template-columns:minmax(0,1fr)}.shell.noside .sum{grid-column:1}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
 /* Map section (js/map.js) */
@@ -143,8 +147,9 @@ dialog::backdrop{background:rgba(5,12,9,.55)}
 .maplegend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
 
 /* Side colours: small businesses are blue (the default teal), companies are orange */
-body[data-side] .top{border-top:4px solid var(--pr)}
+body[data-side="business"] .top,body[data-side="company"] .top{border-top:4px solid var(--pr)}
 body[data-side="business"] .btn.cta{background:var(--pr);border-color:var(--pr);color:var(--on)}
+body[data-side="business"] .btn.cta:hover{background:var(--pr2);border-color:var(--pr2)}
 body[data-side="company"]{--pr:#B4570A;--pr2:#8A4204;--prs:#FDEBCB;--good-bg:#FDEBCB;--good-tx:#6B3A00}
 body[data-side="company"] .hp{color:#F2A541}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body[data-side="company"]{--pr:#F2A541;--pr2:#F7C877;--prs:#3F3012;--good-bg:#3F3012;--good-tx:#F7C877}}

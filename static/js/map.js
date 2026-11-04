@@ -21,19 +21,22 @@ if(p.hygiene_rating!=null)t.push(pill("Food hygiene "+p.hygiene_rating+"/5"+(p.h
 if(b.real)t.push(pill("Real business, name changed"));
 return'<div class="row" style="gap:6px;margin-top:8px">'+t.join("")+"</div>"}
 
-function loadBiz(done){if(bizData)return done(bizData);
-fetch("/api/businesses").then(function(r){return r.json()}).then(function(list){bizData=list;done(list)}).catch(function(){toast("Couldn’t load businesses. Is the server running?")})}
+var bizLoading=null;
+function loadBiz(done,fail){if(bizData)return done(bizData);
+if(!bizLoading)bizLoading=fetch("/api/businesses").then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(function(list){if(!Array.isArray(list))throw new Error("Not a list");bizData=list;return list}).finally(function(){bizLoading=null});
+bizLoading.then(done).catch(function(){toast("Couldn’t load businesses. Is the server running?");if(fail)fail()})}
 
 // Called after render() whenever a map view is on screen.
 function drawBizMap(){var listEl=document.getElementById("bizlist");
+if(listEl&&bizMap){bizMap.remove();bizMap=null}
 if(listEl)return loadBiz(function(list){var areas={};list.forEach(function(b){(areas[b.area]=areas[b.area]||[]).push(b)});
 listEl.innerHTML=Object.keys(areas).sort().map(function(a){return'<h3 class="sec">'+esc(a)+" · "+areas[a].length+'</h3><div class="list-rows">'+
-areas[a].sort(function(x,y){return y.claimed-x.claimed||x.name.localeCompare(y.name)}).map(function(b){return'<div class="lrow"><div class="grow"><b>'+esc(b.name)+'</b><p class="meta">'+esc(b.type)+"</p>"+bizTags(b)+"</div></div>"}).join("")+"</div>"}).join("")});
+areas[a].sort(function(x,y){return y.claimed-x.claimed||x.name.localeCompare(y.name)}).map(function(b){return'<div class="lrow"><div class="grow"><b>'+esc(b.name)+'</b><p class="meta">'+esc(b.type)+"</p>"+bizTags(b)+"</div></div>"}).join("")+"</div>"}).join("")},function(){listEl.innerHTML='<p class="hint">Couldn’t load businesses. Refresh to try again.</p>'});
 var el=document.getElementById("bizmap");if(!el||typeof L==="undefined")return;
 if(bizMap){bizMap.remove();bizMap=null}
-bizMap=L.map(el).setView([54.975,-1.6],13);
+var thisMap=bizMap=L.map(el).setView([54.975,-1.6],13);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · Hygiene ratings: FSA, OGL v3.0'}).addTo(bizMap);
-loadBiz(function(list){if(!bizMap)return;var pts=[];
+loadBiz(function(list){if(bizMap!==thisMap)return;var pts=[];
 list.forEach(function(b){L.circleMarker([b.lat,b.lng],{radius:b.claimed?9:6,color:"#fff",weight:2,fillColor:b.claimed?"#14B5AE":"#F2A541",fillOpacity:.95}).bindPopup("<b>"+esc(b.name)+"</b><br>"+esc(b.type+" · "+b.area)+bizTags(b)).addTo(bizMap);pts.push([b.lat,b.lng])});
 if(pts.length)bizMap.fitBounds(pts,{padding:[30,30]})})}
 
@@ -42,8 +45,8 @@ var miniMap=null;
 function drawMini(){var el=document.getElementById("minimap");if(!el)return;
 if(typeof L==="undefined"){el.innerHTML='<p class="hint" style="padding:16px">The map needs an internet connection. <a href="/map.html">Open the map page</a>.</p>';return}
 if(miniMap){try{miniMap.remove()}catch(e){}miniMap=null}
-miniMap=L.map(el,{scrollWheelZoom:false}).setView([54.975,-1.6],12);
+var thisMini=miniMap=L.map(el,{scrollWheelZoom:false}).setView([54.975,-1.6],12);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · Hygiene ratings: FSA, OGL v3.0'}).addTo(miniMap);
-loadBiz(function(list){if(!miniMap)return;var pts=[];
+loadBiz(function(list){if(miniMap!==thisMini)return;var pts=[];
 list.forEach(function(b){L.circleMarker([b.lat,b.lng],{radius:b.claimed?9:6,color:"#fff",weight:2,fillColor:b.claimed?"#14B5AE":"#F2A541",fillOpacity:.95}).bindPopup("<b>"+esc(b.name)+"</b><br>"+esc(b.type+" · "+b.area)+bizTags(b)).addTo(miniMap);pts.push([b.lat,b.lng])});
 if(pts.length)miniMap.fitBounds(pts,{padding:[30,30]})})}

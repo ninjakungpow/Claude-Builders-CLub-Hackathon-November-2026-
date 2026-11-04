@@ -8,7 +8,7 @@ const STATUS_LABELS = {
   past: "Used it before",
 };
 
-const RATING_LABELS = { 1: "😞 1", 2: "🙁 2", 3: "😐 3", 4: "🙂 4", 5: "😀 5" };
+const RATING_LABELS = { 1: "1 of 5", 2: "2 of 5", 3: "3 of 5", 4: "4 of 5", 5: "5 of 5" };
 
 const VERDICT_LABELS = {
   sort_now: "Sort this now",
@@ -63,6 +63,11 @@ async function api(path, options = {}) {
   return body;
 }
 
+// The demo's stand-in for logging in. The server checks this before sharing anything private.
+function signIn(role, id) {
+  return api("/api/demo-login", { method: "POST", body: JSON.stringify({ role, id }) });
+}
+
 function publicTags(b) {
   const pub = b.public;
   const tags = [];
@@ -102,6 +107,7 @@ async function showOwner() {
 }
 
 async function loadBusiness(id) {
+  await signIn("owner", id);
   currentBusiness = await api(`/api/business/${id}`);
   document.getElementById("advice").replaceChildren();
   document.getElementById("save-status").textContent = "";
@@ -151,7 +157,7 @@ function renderNeedsForm() {
   form.replaceChildren(
     ...meta.needs.map(({ key, label }) => {
       const need = currentBusiness.needs[key] || {
-        status: "unknown", provider: null, rating: null, comment: "", note: "", shared: false,
+        status: "unknown", provider: null, rating: null, comment: "", note: "", shared: false, share_feedback: false,
       };
       const row = el("div", { class: "need", "data-need": key });
 
@@ -175,19 +181,24 @@ function renderNeedsForm() {
         placeholder: "Anything providers should know? (optional)", maxlength: 280,
       });
       const shared = el("input", { type: "checkbox", name: "shared", checked: need.shared });
+      const feedback = el("input", { type: "checkbox", name: "share_feedback", checked: need.share_feedback });
+      const feedbackRow = el("label", { class: "share feedback-share" }, feedback,
+        "Also show my rating and comment to my current provider");
 
       // Provider, rating and review only make sense if they've used someone.
       const toggle = () => {
         const used = ["happy", "unhappy", "past"].includes(status.value);
         for (const field of [provider, rating, comment]) field.hidden = !used;
+        feedbackRow.hidden = !(shared.checked && ["happy", "unhappy"].includes(status.value));
       };
       status.addEventListener("change", toggle);
+      shared.addEventListener("change", toggle);
       toggle();
 
       row.append(
         el("div", { class: "need-title" }, label,
           el("label", { class: "share" }, shared, "Show providers")),
-        status, provider, rating, comment, note,
+        status, provider, rating, comment, note, feedbackRow,
       );
       return row;
     }),
@@ -206,6 +217,7 @@ function readNeedsForm() {
       comment: used ? field("comment").value : "",
       note: field("note").value,
       shared: field("shared").checked,
+      share_feedback: !field("share_feedback").closest("label").hidden && field("share_feedback").checked,
     };
   }
   return needs;
@@ -297,6 +309,7 @@ function matchLine(m) {
 }
 
 async function loadProvider(id) {
+  await signIn("provider", id);
   const view = await api(`/api/provider/${id}/map`);
   const order = PIN_STATES.map((s) => s.state);
   view.sort((a, b) => order.indexOf(bestState(a.matches)) - order.indexOf(bestState(b.matches)));
@@ -355,7 +368,7 @@ async function start() {
   meta = await api("/api/meta");
   if (!meta.adviser_ready) {
     document.getElementById("advise").after(
-      el("p", { class: "muted" }, "Adviser is off: install Claude Code or add a Claude API key to .env."));
+      el("p", { class: "muted" }, "The adviser is switched off in this demo."));
   }
 
   for (const tab of document.querySelectorAll(".roles button")) {
@@ -367,4 +380,7 @@ async function start() {
   await setRole("owner");
 }
 
-start();
+start().catch((err) => {
+  document.querySelector(".panel").prepend(
+    el("p", { class: "error load-error" }, `Couldn't load the map data. ${err.message}`));
+});

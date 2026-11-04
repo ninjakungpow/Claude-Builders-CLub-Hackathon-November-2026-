@@ -105,7 +105,8 @@
           "rating": 5,
           "comment": "Money lands next day.",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "banking": {
           "status": "happy",
@@ -113,7 +114,8 @@
           "rating": 4,
           "comment": "",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "accounting": {
           "status": "none",
@@ -188,7 +190,8 @@
           "rating": 2,
           "comment": "Fees went up twice this year.",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "banking": {
           "status": "happy",
@@ -204,7 +207,8 @@
           "rating": 4,
           "comment": "Friendly and quick.",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "marketing": {
           "status": "past",
@@ -220,7 +224,8 @@
           "rating": 5,
           "comment": "Our Instagram finally looks good.",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "website": {
           "status": "happy",
@@ -273,7 +278,8 @@
           "rating": 4,
           "comment": "",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "banking": {
           "status": "happy",
@@ -281,7 +287,8 @@
           "rating": 3,
           "comment": "",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "accounting": {
           "status": "past",
@@ -313,7 +320,8 @@
           "rating": 4,
           "comment": "",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "hiring": {
           "status": "unknown",
@@ -352,7 +360,8 @@
           "rating": 2,
           "comment": "Card reader keeps dropping out.",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "banking": {
           "status": "happy",
@@ -512,7 +521,8 @@
           "rating": 5,
           "comment": "Never had a problem.",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "banking": {
           "status": "unhappy",
@@ -520,7 +530,8 @@
           "rating": 2,
           "comment": "Hard to reach anyone by phone.",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "accounting": {
           "status": "happy",
@@ -528,7 +539,8 @@
           "rating": 5,
           "comment": "Saved us a lot on VAT.",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "marketing": {
           "status": "happy",
@@ -536,7 +548,8 @@
           "rating": 4,
           "comment": "",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "social_media": {
           "status": "happy",
@@ -544,7 +557,8 @@
           "rating": 4,
           "comment": "",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "website": {
           "status": "happy",
@@ -552,7 +566,8 @@
           "rating": 4,
           "comment": "",
           "note": "",
-          "shared": true
+          "shared": true,
+          "share_feedback": true
         },
         "hiring": {
           "status": "none",

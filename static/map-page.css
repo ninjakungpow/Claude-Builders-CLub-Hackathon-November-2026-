@@ -179,3 +179,61 @@ button.primary:disabled { opacity: 0.6; cursor: wait; }
 .toplinks { display: flex; flex-wrap: wrap; gap: 4px; }
 .toplinks a { color: var(--text); text-decoration: none; padding: 6px 10px; border-radius: 8px; font-size: 0.875rem; font-weight: 600; }
 .toplinks a:hover { background: var(--banner-bg); }
+
+/* Visual pass: tokens match css/nehelp.css */
+:root{color-scheme:light;--bg:#F6F8F7;--surface:#fff;--tint:#E9EFED;--text:#12263A;--muted:#4F6275;--border:#DAE3E0;--field:#7A8C8A;--accent:#0B7A75;--accent-dark:#085F5B;--accent-text:#fff;--banner-bg:#E9EFED;
+  --pin-open:#C2570C;--pin-happy:#0B7A75;--pin-unhappy:#A12B2B;--pin-gap:#5B4FCF;--pin-quiet:#7F897F;--pin-you:#12263A}
+body{font:15px/1.5 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1{font-size:1.375rem;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+h2{font-size:1.0625rem;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.topbar{padding:10px 20px}
+.logo{display:block;width:32px;height:32px}
+.tagline{font-size:.8125rem}
+.roles{border:0;border-radius:10px;background:var(--tint);padding:3px;gap:3px;overflow:visible}
+.roles button{border-radius:8px;padding:7px 14px;font-weight:500;color:var(--muted)}
+.roles button[aria-selected="true"]{background:var(--surface);color:var(--accent-dark);font-weight:600;box-shadow:0 1px 2px rgb(18 38 58/.14)}
+.sample-banner{padding:6px 20px;color:var(--text)}
+.sources{margin:0;padding:4px 20px;font-size:.75rem;color:var(--muted);background:var(--surface);border-top:1px solid var(--border)}
+
+.panel{background:var(--surface);padding:0}
+.panel .field{margin:0;padding:16px 20px 0;font-size:.8125rem;color:var(--muted)}
+.card{background:none;border:0;border-bottom:1px solid var(--border);border-radius:0;padding:20px;margin:0}
+.card:last-child{border-bottom:0}
+.card:empty{display:none}
+#business-header{padding-top:12px}
+#business-header h2{font-size:1.375rem;font-weight:800;letter-spacing:-.02em}
+#business-header .muted{margin-bottom:4px}
+.card.private{border-top:1px solid var(--private-border);border-bottom:1px solid var(--private-border);margin-top:-1px}
+.card.private h2{display:flex;align-items:center;gap:6px}
+.card.private h2 svg{width:16px;height:16px;flex:none}
+#signals:empty::before,#leads:empty::before,#needs-form:empty::before{content:"Loading…";color:var(--muted)}
+.load-error{margin:16px 20px 0}
+
+select,input[type="text"]{background:var(--surface);border-color:var(--field);border-radius:6px;padding:8px 10px;min-height:40px}
+input[type="checkbox"]{accent-color:var(--accent);width:18px;height:18px;margin:0}
+button.primary{border-radius:6px;padding:10px 16px}
+button.primary:hover{background:var(--accent-dark)}
+#save-needs{background:transparent;color:var(--accent-dark);box-shadow:inset 0 0 0 1.5px var(--accent)}
+#save-needs:hover{background:var(--tint)}
+.need{grid-template-columns:1fr 1fr 84px;padding:14px 0}
+.need select{min-width:0}
+.need:has(select[name="provider"][hidden]) select[name="status"]{grid-column:1/-1}
+.feedback-share{grid-column:1/-1}
+.feedback-share[hidden]{display:none}
+.tag{border:0;border-radius:4px;background:var(--tint);color:#33475A;padding:2px 6px}
+
+.advice-item{border-left:0;border-top:1px solid var(--border);padding:12px 0 2px;margin:0}
+.advice-item .verdict{display:flex;align-items:center;gap:6px}
+.advice-item .verdict::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--pin-quiet);flex:none}
+.v-sort_now .verdict::before{background:var(--pin-open)}
+.v-worth_considering .verdict::before{background:var(--pin-gap)}
+.v-already_sorted .verdict::before{background:var(--pin-happy)}
+
+.leaflet-container{font-family:inherit}
+.leaflet-tile-pane{filter:saturate(.3) contrast(.9) brightness(1.05)}
+.leaflet-container .leaflet-bar{border:1px solid var(--border);border-radius:6px;box-shadow:0 1px 3px rgb(18 38 58/.16)}
+.leaflet-container .leaflet-bar a{color:var(--text);width:36px;height:36px;line-height:36px}
+.leaflet-popup-content-wrapper{border-radius:8px;box-shadow:0 4px 16px rgb(18 38 58/.2)}
+.leaflet-popup-content{font:14px/1.45 "Plus Jakarta Sans",system-ui,sans-serif;margin:12px 14px}

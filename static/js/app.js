@@ -37,7 +37,7 @@ co.err=er;if(!er){co.step++;newErr=""}save();render();break;
 case"co-finish":grabCo();var c2=S.company;if(!HELPS.some(function(x){return c2.help[x]}))co.err="Pick at least one kind of work.";else if(!c2.terms)co.err="Agree to the partner terms to continue.";else{c2.onboarded=true;COMP.tyne=c2.name;co.err="";save();go("c-requests");toast("Welcome to NEhelp");break}render();break;
 case"profile-save":grabCo();COMP.tyne=S.company.name;save();render();toast("Profile saved");break;
 case"how":var hw=document.getElementById("how");if(hw)hw.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});break;
-case"role":S.role=d.r;ob={step:1,mode:"ch",err:""};co={step:1,err:""};save();go(d.r==="business"?(S.claimed?"b-issues":"onboarding"):(S.company.onboarded?"c-requests":"c-onboarding"));break;
+case"role":$("#menu").hidden=true;S.role=d.r;ob={step:1,mode:"ch",err:""};co={step:1,err:""};save();go(d.r==="business"?(S.claimed?"b-issues":"onboarding"):(S.company.onboarded?"c-requests":"c-onboarding"));break;
 case"logout":S.role=null;save();location.hash="";render();break;
 case"reset":S=seed();save();ob={step:1,mode:"ch",err:""};req=null;closeDlg();$("#menu").hidden=true;location.hash="";render();toast("Demo data reset");break;
 case"ob-next":ob.step=2;ob.err="";render();break;
@@ -84,10 +84,12 @@ if(!e.target.closest("#menu")&&!e.target.closest("#avatar"))$("#menu").hidden=tr
 if(e.target.closest("#menu"))$("#menu").hidden=true});
 document.addEventListener("change",function(e){var a=e.target.closest("[data-a]");if(a&&(a.tagName==="SELECT"||a.tagName==="INPUT"))act(a.dataset.a,a.dataset,a)});
 document.addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target.classList&&e.target.classList.contains("card")){e.preventDefault();act("open",e.target.dataset,e.target)}if(e.key==="Escape")$("#menu").hidden=true});
-document.addEventListener("click",function(e){if(!e.target.closest("#menu")&&!e.target.closest("#avatar"))$("#menu").hidden=true});
-$("#avatar").addEventListener("click",function(){var m=$("#menu");m.hidden=!m.hidden;this.setAttribute("aria-expanded",!m.hidden)});
+document.addEventListener("click",function(e){if(!e.target.closest("#menu")&&!e.target.closest("#avatar")&&!e.target.closest("#burger"))$("#menu").hidden=true});
+$("#avatar").addEventListener("click",function(){var m=$("#menu");m.classList.remove("fromburger");m.hidden=!m.hidden;this.setAttribute("aria-expanded",!m.hidden)});
 function closeSide(){var s=$("#side");if(s)s.classList.remove("open");$("#scrim").classList.remove("open")}
-$("#burger").addEventListener("click",function(){var s=$("#side");if(!s)return;s.classList.toggle("open");$("#scrim").classList.toggle("open",s.classList.contains("open"))});
+$("#burger").addEventListener("click",function(){var s=$("#side"),m=$("#menu");if(!s){m.classList.add("fromburger");m.hidden=!m.hidden;this.setAttribute("aria-expanded",!m.hidden);return}
+if(matchMedia("(max-width:760px)").matches){s.classList.toggle("open");$("#scrim").classList.toggle("open",s.classList.contains("open"));this.setAttribute("aria-expanded",s.classList.contains("open"));return}
+navHidden=!navHidden;$(".shell").classList.toggle("noside",navHidden);this.setAttribute("aria-expanded",!navHidden)});
 $("#scrim").addEventListener("click",closeSide);
 $("#dlg").addEventListener("click",function(e){if(e.target===this)closeDlg()});
 window.addEventListener("hashchange",render);

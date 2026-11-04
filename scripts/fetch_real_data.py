@@ -175,8 +175,9 @@ def main():
                 "name": name,
                 "type": label,
                 "area": area,
-                "lat": round(b["lat"], 5),
-                "lng": round(b["lng"], 5),
+                # About 100m, so a changed name can't be undone by looking up the exact spot.
+                "lat": round(b["lat"], 3),
+                "lng": round(b["lng"], 3),
                 "claimed": False,
                 "real": True,
                 "public": {

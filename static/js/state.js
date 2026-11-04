@@ -50,6 +50,6 @@ function nav(){return S.role==="business"?[["b-issues","Overview"],["b-new","Lis
 var co={step:1,err:""},ob={step:1,mode:"ch",sent:false,err:""},req=null,openId=null,dlgKind=null,newErr="";
 
 function menu(){var m=$("#menu"),biz=S.role==="business";
-m.innerHTML=S.role?'<p>Signed in as <b>'+esc(S.accounts[S.role].name)+'</b><br>'+(biz?esc(S.business.name):esc(S.company.name))+'</p><button data-go="'+(biz?"b-account":"c-account")+'">Your account</button><button data-a="topmap">Open the map</button><button data-a="logout">Log out</button><button data-a="reset">Reset demo data</button>':'<p>Not signed in</p><button data-a="topmap">Open the map</button><button data-a="reset">Reset demo data</button>';
+m.innerHTML=S.role?'<p>Signed in as <b>'+esc(S.accounts[S.role].name)+'</b><br>'+(biz?esc(S.business.name):esc(S.company.name))+'</p><button data-go="'+(biz?"b-account":"c-account")+'">Your account</button><button data-a="topmap">Open the map</button><button data-a="logout">Log out</button><button data-a="reset">Reset demo data</button>':'<p>Not signed in</p><button data-a="role" data-r="business">I run a small business</button><button data-a="role" data-r="company">I work at a larger company</button><button data-a="topmap">Open the map</button><button data-a="reset">Reset demo data</button>';
 $("#avatar").textContent=S.role?initials(S.accounts[S.role].name):"NE";
 var bs=document.querySelectorAll(".rolesw button");for(var k=0;k<bs.length;k++)bs[k].setAttribute("aria-pressed",String(bs[k].dataset.r===S.role))}

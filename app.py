@@ -13,13 +13,18 @@ A provider's browser never receives layer 3, so it can't leak through the page.
 import copy
 import json
 import os
+import secrets
 import shutil
 import subprocess
+import time
+from collections import defaultdict, deque
+from functools import wraps
 from pathlib import Path
 
 import anthropic
 from dotenv import load_dotenv
-from flask import Flask, abort, jsonify, request, send_from_directory
+from flask import Flask, abort, jsonify, request, send_from_directory, session
+from werkzeug.exceptions import HTTPException
 
 load_dotenv()
 
@@ -45,12 +50,30 @@ businesses = {b["id"]: b for b in copy.deepcopy(seed + real)}
 PUBLIC_GAPS = {"website": "has_website", "social_media": "has_social"}
 
 app = Flask(__name__, static_folder="static", static_url_path="")
+app.secret_key = os.environ.get("SECRET_KEY") or secrets.token_hex(32)
+app.config.update(SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE="Lax")
+
+
+@app.errorhandler(HTTPException)
+def json_errors(e):
+    """API callers get JSON, so the page can show the real message."""
+    if request.path.startswith("/api/"):
+        return jsonify(error=e.description), e.code
+    return e
 
 
 def get_business(business_id):
     b = businesses.get(business_id)
     if b is None:
         abort(404)
+    return b
+
+
+def own_business(business_id):
+    """The business, but only for the owner signed in to it."""
+    b = get_business(business_id)
+    if session.get("business_id") != business_id:
+        abort(403, "Sign in as this business first.")
     return b
 
 
@@ -69,9 +92,9 @@ def match_for(b, need_key, provider_id):
     if not b["claimed"]:
         gap = PUBLIC_GAPS.get(need_key)
         # False means "checked and none listed"; None means "we don't know".
-        if gap and b["public"].get(gap) is False:
-            where = "on OpenStreetMap" if b.get("real") else "publicly"
-            return {"need": need_key, "state": "public_gap", "text": f"No {label.lower()} listed {where}"}
+        # Real businesses haven't agreed to anything, so they're never offered as leads.
+        if gap and not b.get("real") and b["public"].get(gap) is False:
+            return {"need": need_key, "state": "public_gap", "text": f"No {label.lower()} listed publicly"}
         return {"need": need_key, "state": "no_info", "text": "Not on NEhelp yet"}
 
     need = b["needs"].get(need_key)
@@ -79,9 +102,15 @@ def match_for(b, need_key, provider_id):
         return {"need": need_key, "state": "private", "text": f"{label}: not shared"}
 
     status = need["status"]
+    is_customer = need["provider"] == provider_id and status in ("happy", "unhappy")
+    if is_customer and not need.get("share_feedback"):
+        # "Show providers" asks for offers. Telling your own provider how you
+        # rate them is a separate choice, so they learn nothing without it.
+        return {"need": need_key, "state": "private", "text": f"{label}: not shared"}
+
     match = {"need": need_key, "note": need["note"]}
-    if need["provider"] == provider_id and status in ("happy", "unhappy"):
-        # Your own customer: you see their rating and comment.
+    if is_customer:
+        # Your own customer, who chose to share this with you.
         match.update(
             state="customer_happy" if status == "happy" else "customer_unhappy",
             text=f"Your customer for {label.lower()}: {'happy' if status == 'happy' else 'not happy'}",
@@ -115,6 +144,27 @@ def index():
     return send_from_directory(app.static_folder, "index.html")
 
 
+@app.post("/api/demo-login")
+def demo_login():
+    """Stand-in for a real login: the demo lets you pick who you are.
+
+    Everything private is checked against this session, so a real login can
+    replace this one route without changing the rest.
+    """
+    body = request.get_json(force=True)
+    if not isinstance(body, dict) or not isinstance(body.get("id"), str):
+        abort(400, "Choose who to sign in as.")
+    role, target = body.get("role"), body["id"]
+    session.clear()
+    if role == "owner" and businesses.get(target, {}).get("claimed"):
+        session["business_id"] = target
+    elif role == "provider" and target in providers:
+        session["provider_id"] = target
+    else:
+        abort(400, "Choose who to sign in as.")
+    return jsonify(ok=True)
+
+
 @app.get("/api/meta")
 def meta():
     return jsonify(
@@ -132,24 +182,23 @@ def all_public():
 
 @app.get("/api/business/<business_id>")
 def owner_view(business_id):
-    # Demo only: there are no logins yet, so anyone can open the owner view.
-    return jsonify(get_business(business_id))
+    return jsonify(own_business(business_id))
 
 
 @app.put("/api/business/<business_id>/needs")
 def update_needs(business_id):
-    b = get_business(business_id)
-    if not b["claimed"]:
-        abort(400, "This business hasn't signed up.")
+    b = own_business(business_id)
     incoming = request.get_json(force=True)
+    if not isinstance(incoming, dict):
+        abort(400, "Send your needs as a list of answers.")
     for key, need in incoming.items():
-        if key not in NEED_KEYS or need.get("status") not in STATUSES:
+        if key not in NEED_KEYS or not isinstance(need, dict) or need.get("status") not in STATUSES:
             abort(400, f"Bad need: {key}")
         rating = need.get("rating")
-        if rating is not None and rating not in range(1, 6):
+        if rating is not None and (type(rating) is not int or rating not in range(1, 6)):
             abort(400, "Rating must be 1 to 5.")
         provider = need.get("provider")
-        if provider not in providers and provider not in (None, "other"):
+        if provider is not None and (not isinstance(provider, str) or (provider not in providers and provider != "other")):
             abort(400, "Unknown provider.")
         b["needs"][key] = {
             "status": need["status"],
@@ -158,6 +207,7 @@ def update_needs(business_id):
             "comment": str(need.get("comment", ""))[:280],
             "note": str(need.get("note", ""))[:280],
             "shared": bool(need.get("shared")),
+            "share_feedback": bool(need.get("share_feedback")),
         }
     return jsonify(b)
 
@@ -167,6 +217,8 @@ def provider_map(provider_id):
     provider = providers.get(provider_id)
     if provider is None:
         abort(404)
+    if session.get("provider_id") != provider_id:
+        abort(403, "Sign in as this provider first.")
     return jsonify([provider_view(b, provider) for b in businesses.values()])
 
 
@@ -274,8 +326,63 @@ def ask_claude_code(system_prompt, schema, user_input):
     return jsonify(result["structured_output"])
 
 
-def advise_with_claude_code(profile):
-    return ask_claude_code(ADVISER_PROMPT, ADVICE_SCHEMA, json.dumps(profile, indent=2))
+def ask_claude(system_prompt, schema, user_input, effort):
+    """Ask Claude for JSON that matches the schema, and return it as a response."""
+    backend = adviser_backend()
+    if backend is None:
+        return error("Claude isn't set up here. Install Claude Code or add a Claude API key to .env.", 503)
+    if backend == "claude_code":
+        return ask_claude_code(system_prompt, schema, user_input)
+
+    try:
+        response = anthropic.Anthropic().beta.messages.create(
+            model="claude-opus-5-5",
+            max_tokens=16000,
+            # If Claude declines, the API retries on a recommended fallback model.
+            betas=["server-side-fallback-2026-07-01"],
+            fallbacks="default",
+            output_config={"effort": effort, "format": {"type": "json_schema", "schema": schema}},
+            system=system_prompt,
+            messages=[{"role": "user", "content": user_input}],
+        )
+    except anthropic.AuthenticationError:
+        return error("Claude didn't accept the API key. Check the key in .env.", 502)
+    except anthropic.RateLimitError:
+        return error("Too many requests right now. Wait a minute and try again.", 429)
+    except anthropic.APIStatusError as e:
+        return error(f"Claude API error ({e.status_code}): {e.message}", 502)
+    except anthropic.APIConnectionError:
+        return error("Couldn't reach Claude. Check your internet connection.", 502)
+
+    if response.stop_reason == "refusal":
+        return error("Claude couldn't answer this one.", 502)
+    if response.stop_reason == "max_tokens":
+        return error("Claude's answer was cut off. Try again.", 502)
+
+    text = next((block.text for block in response.content if block.type == "text"), "")
+    try:
+        return jsonify(json.loads(text))
+    except json.JSONDecodeError:
+        return error("Claude's answer couldn't be read. Try again.", 502)
+
+
+CLAUDE_CALLS_PER_MINUTE = 10
+recent_claude_calls = defaultdict(deque)
+
+
+def limit_claude_calls(view):
+    """Each call costs money, so one visitor can't make unlimited calls."""
+    @wraps(view)
+    def limited(*args, **kwargs):
+        now = time.monotonic()
+        calls = recent_claude_calls[request.remote_addr]
+        while calls and now - calls[0] > 60:
+            calls.popleft()
+        if len(calls) >= CLAUDE_CALLS_PER_MINUTE:
+            return error("Too many requests. Wait a minute and try again.", 429)
+        calls.append(now)
+        return view(*args, **kwargs)
+    return limited
 
 
 # ---------- Request drafting (the "Turn into a request" button) ----------
@@ -312,82 +419,29 @@ DRAFT_SCHEMA = {
 
 
 @app.post("/api/draft-request")
+@limit_claude_calls
 def draft_request():
     body = request.get_json(force=True)
+    if not isinstance(body, dict):
+        return error("Tell us what would help first.", 400)
     text = str(body.get("text", "")).strip()[:2000]
     if not text:
         return error("Tell us what would help first.", 400)
-    business = body.get("business") or {}
+    business = body.get("business")
+    business = business if isinstance(business, dict) else {}
     user_input = json.dumps({
         "owner_says": text,
         "business": {k: str(business.get(k, ""))[:100] for k in ("name", "kind", "area")},
     }, indent=2)
-
-    backend = adviser_backend()
-    if backend == "claude_code":
-        return ask_claude_code(DRAFT_PROMPT, DRAFT_SCHEMA, user_input)
-    if backend is None:
-        return error("Claude isn't set up on this computer.", 503)
-    try:
-        response = anthropic.Anthropic().beta.messages.create(
-            model="claude-opus-5-5",
-            max_tokens=16000,
-            betas=["server-side-fallback-2026-07-01"],
-            fallbacks="default",
-            output_config={"effort": "low", "format": {"type": "json_schema", "schema": DRAFT_SCHEMA}},
-            system=DRAFT_PROMPT,
-            messages=[{"role": "user", "content": user_input}],
-        )
-    except anthropic.APIError as e:
-        return error(f"Claude API error: {e}", 502)
-    if response.stop_reason in ("refusal", "max_tokens"):
-        return error("Claude couldn't draft this one.", 502)
-    return jsonify(json.loads(next(b.text for b in response.content if b.type == "text")))
+    return ask_claude(DRAFT_PROMPT, DRAFT_SCHEMA, user_input, effort="low")
 
 
 @app.post("/api/business/<business_id>/advise")
+@limit_claude_calls
 def advise(business_id):
-    b = get_business(business_id)
-    if not b["claimed"]:
-        return error("This business hasn't signed up.", 400)
-    backend = adviser_backend()
-    if backend is None:
-        return error("The adviser needs Claude Code installed or a Claude API key in .env.", 503)
-    if backend == "claude_code":
-        return advise_with_claude_code(adviser_profile(b))
-
-    client = anthropic.Anthropic()
-    try:
-        response = client.beta.messages.create(
-            model="claude-opus-5-5",
-            max_tokens=16000,
-            # If Claude declines, the API retries on a recommended fallback model.
-            betas=["server-side-fallback-2026-07-01"],
-            fallbacks="default",
-            output_config={
-                "effort": "medium",
-                "format": {"type": "json_schema", "schema": ADVICE_SCHEMA},
-            },
-            system=ADVISER_PROMPT,
-            messages=[{"role": "user", "content": json.dumps(adviser_profile(b), indent=2)}],
-        )
-    except anthropic.AuthenticationError:
-        return error("Claude didn't accept the API key. Check the key in .env.", 502)
-    except anthropic.RateLimitError:
-        return error("Too many requests right now. Wait a minute and try again.", 429)
-    except anthropic.APIStatusError as e:
-        return error(f"Claude API error ({e.status_code}): {e.message}", 502)
-    except anthropic.APIConnectionError:
-        return error("Couldn't reach Claude. Check your internet connection.", 502)
-
-    if response.stop_reason == "refusal":
-        return error("The adviser couldn't answer this one.", 502)
-    if response.stop_reason == "max_tokens":
-        return error("The adviser's answer was cut off. Try again.", 502)
-
-    text = next(block.text for block in response.content if block.type == "text")
-    return jsonify(json.loads(text))
+    b = own_business(business_id)
+    return ask_claude(ADVISER_PROMPT, ADVICE_SCHEMA, json.dumps(adviser_profile(b), indent=2), effort="medium")
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5050)
+    app.run(debug=os.environ.get("FLASK_DEBUG") == "1", port=5050)
