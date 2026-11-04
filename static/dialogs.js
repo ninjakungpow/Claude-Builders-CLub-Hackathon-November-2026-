@@ -1,0 +1,38 @@
+// NEhelp: pop-up dialogs: issue details, handover guide, messages, display
+// Loaded as a plain script; everything shares one global scope, in the order index.html lists.
+
+function dlg(html,kind){var d=$("#dlg");d.innerHTML='<div class="dl">'+html+"</div>";dlgKind=kind||null;if(!d.open)d.showModal()}
+function closeDlg(){var d=$("#dlg");if(d.open)d.close();openId=null;dlgKind=null}
+function refreshDlg(){if(!$("#dlg").open)return;if(openId)showIssue(openId)}
+function agr(i){return i.signed?'<div class="note"><b>Agreement</b><br>'+i.check.length+" items in scope · about "+i.hours+" hours · "+(i.price?"£"+i.price:"Free")+"<br>"+esc(COMP[i.company]||"")+" and "+esc(bizName(i))+" · signed "+esc(i.signed)+"</div>":""}
+function showIssue(id){openId=id;var i=byId(id);if(!i)return;var biz=S.role==="business",e=emp(i.employee),s=biz?BL[i.status]:(CL[i.status]||["",""]);
+if(!biz&&i.status==="open"){var r0=fitReason(i);s=r0?[r0,"warn"]:["Fits your team","good"]}
+var h='<h2>'+esc(biz?i.title:whoFor(i))+'</h2><div class="row" style="margin:0 0 12px">'+pill(i.cat)+pill(s[0],s[1])+"</div>"+(biz?"":'<p style="margin-bottom:6px"><b>'+esc(i.title)+"</b></p>")+"<p>"+esc(i.desc)+'</p><ul class="check">'+i.check.map(function(c){return"<li>"+esc(c)+"</li>"}).join("")+'</ul><p class="meta">About '+i.hours+" hours · "+esc(i.help)+" help</p>";
+var a="";
+if(biz){
+if(i.status==="draft")a='<button class="btn pri" data-a="send" data-id="'+i.id+'">Send to companies</button><button class="btn dng" data-a="del" data-id="'+i.id+'">Remove</button>';
+if(i.status==="open")a='<button class="btn" data-a="notneeded" data-id="'+i.id+'">Mark not needed</button>';
+if(i.status==="offered"){h+='<div class="note"><b>'+esc(COMP[i.company])+"</b> has offered help"+(e?" with "+esc(e.name):"")+". "+(i.price?"Price: £"+i.price+". ":"It’s free. ")+"About "+i.hours+" hours."+(i.note?" “"+esc(i.note)+"”":"")+" Nothing’s agreed until you accept.</div>";a='<button class="btn dng" data-a="decline" data-id="'+i.id+'">Decline</button><button class="btn pri" data-a="accept" data-id="'+i.id+'">Accept offer</button>'}
+if(i.status==="inprogress"){h+=agr(i);a='<button class="btn" data-a="message" data-id="'+i.id+'">Message '+esc(COMP[i.company])+"</button>"}
+if(i.status==="done"){h+=agr(i);a='<button class="btn pri" data-a="handover" data-id="'+i.id+'">View handover guide</button>'}
+if(i.status==="notneeded")a='<button class="btn" data-a="reopen" data-id="'+i.id+'">Reopen</button>'}
+else{
+if(i.status==="open"){var r=fitReason(i),f=freeIn(i.cat);
+if(f.length){if(r)h+='<div class="note" style="background:var(--warn-bg);color:var(--warn-tx)">'+esc(r)+". You can still send an offer.</div>";
+h+='<label class="field" style="margin-top:14px"><span>Assign an employee</span><select id="asg">'+f.map(function(x){return'<option value="'+x.id+'">'+esc(x.name)+"</option>"}).join("")+'</select></label><label class="field"><span>About how many hours</span><input type="text" id="ofh" inputmode="numeric" value="'+i.hours+'" style="max-width:120px"></label>'+(i.help!=="Free"?'<label class="field"><span>'+(i.help==="Paid"?"Price (£)":"Discounted price (£)")+'</span><input type="text" id="ofp" inputmode="decimal" placeholder="240" style="max-width:160px"></label>':"")+'<label class="field"><span>Note to the business (optional)</span><textarea id="ofn" style="min-height:70px"></textarea></label><span class="err" id="oferr"></span><div class="note">Sending an offer creates a short agreement under NEhelp’s standard terms: scope, price, timeline and sign-off. Nothing’s binding until the business accepts.</div>';
+a='<button class="btn cta" data-a="assign" data-id="'+i.id+'">Send offer</button>'}
+else{h+='<div class="note">No one is free in '+esc(i.cat)+". Add an employee or update someone’s specialty first.</div>";a='<button class="btn" data-go="c-add">Add new employee</button>'}}
+if(i.status==="offered")a='<button class="btn" data-a="withdraw" data-id="'+i.id+'">Withdraw offer</button>';
+if(i.status==="inprogress"&&i.company==="tyne"){h+=agr(i);a='<button class="btn" data-a="message" data-id="'+i.id+'">Message</button><button class="btn pri" data-a="finish" data-id="'+i.id+'">Mark done</button>'}
+if(i.status==="done"){h+=agr(i);a='<button class="btn" data-a="handover" data-id="'+i.id+'">View handover guide</button>'}}
+dlg(h+'<div class="row">'+a+'<button class="btn" data-a="close">Close</button></div>',"issue")}
+var TIPS={Marketing:["Ask for your admin logins and keep them in a password manager.","Check opening hours and prices online once a month.","Post or update something at least once a week."],Finance:["Keep every receipt in one folder, paper or digital.","Send invoices within three days of finishing a job.","Check your bank balance against unpaid invoices every Friday."],Employment:["Keep signed contracts somewhere safe and backed up.","Check holiday balances at the start of each month.","Review next week’s rota every Friday."]};
+function handover(id){var i=S.issues.filter(function(x){return x.id===id})[0],e=emp(i.employee);openId=null;
+dlg('<h2>Handover guide</h2><p class="hint">'+esc(i.title)+"</p><h3 style=\"font-size:17px;margin:18px 0 4px\">What was done</h3><ul class=\"check\">"+i.check.map(function(c){return"<li>"+esc(c)+"</li>"}).join("")+'</ul><h3 style="font-size:17px;margin:18px 0 4px">Keeping it going</h3><ul class="check">'+TIPS[i.cat].map(function(t){return"<li>"+esc(t)+"</li>"}).join("")+'</ul><h3 style="font-size:17px;margin:18px 0 4px">Who to ask</h3><p>'+esc(COMP[i.company]||"Your company")+(e?", "+esc(e.name):"")+". Message them in NEhelp any time.</p>"+'<div class="row"><button class="btn" data-a="close">Close</button></div>',"guide")}
+function msgDlg(id){openId=null;dlg('<h2>Send a message</h2><label class="field" style="margin-top:12px"><span>Your message</span><textarea id="msg" style="min-height:110px" placeholder="Hi, quick question about timing…"></textarea><span class="err" id="msgerr"></span></label><div class="row"><button class="btn" data-a="close">Cancel</button><button class="btn pri" data-a="sendmsg">Send message</button></div>',"msg")}
+function setDlg(){dlg('<h2>Display</h2><label class="row" style="gap:10px;margin-top:12px"><input type="checkbox" id="hc"'+(S.ui.hideClosed?" checked":"")+'> Hide finished and not-needed items</label>'+(S.role==="company"?'<label class="row" style="gap:10px;margin-top:12px"><input type="checkbox" id="om"'+(S.ui.onlyMine?" checked":"")+'> Only show requests in my areas</label>':"")+'<div class="row"><button class="btn pri" data-a="savesettings">Save</button><button class="btn" data-a="close">Cancel</button></div>',"settings")}
+
+function byId(id){return S.issues.filter(function(x){return x.id===id})[0]}
+
+function bizEditDlg(){var b=S.business;dlg('<h2>Edit business details</h2><label class="field" style="margin-top:12px"><span>Business name</span><input type="text" id="be-name" value="'+esc(b.name)+'"></label><label class="field"><span>Opening hours</span><input type="text" id="be-hours" value="'+esc(b.hours)+'"></label><label class="field"><span>Address</span><input type="text" id="be-addr" value="'+esc(b.address)+'"></label><div class="row"><button class="btn" data-a="close">Cancel</button><button class="btn pri" data-a="bizedit-save">Save changes</button></div>',"bizedit")}
+function confirmDeleteDlg(){dlg('<h2>Delete your account?</h2><p>This clears your demo data in this browser and takes you back to the start.</p><div class="row"><button class="btn" data-a="close">Keep my account</button><button class="btn dng" data-a="acc-delete-yes">Delete account</button></div>',"confirm")}

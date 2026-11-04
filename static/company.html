@@ -7,14 +7,22 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/nehelp.css">
+<link rel="stylesheet" href="nehelp.css">
 </head>
+<<<<<<< Updated upstream
 <!-- Company sign-up and log-in. Shares saved state with index.html, so it carries straight into the company dashboard. -->
 <body data-side="company">
 <header class="top">
   <div></div>
   <a class="brand" href="index.html#home" aria-label="NEhelp home" style="text-decoration:none"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--ink)"/><circle cx="12.5" cy="16" r="7" fill="#14B5AE"/><circle cx="19.5" cy="16" r="7" fill="#F2A541" opacity=".92"/></svg><span>NE<span class="hp">help</span></span></a>
   <div class="right"><a class="tbtn" href="map.html" style="text-decoration:none">Map</a></div>
+=======
+<body data-side="company">
+<header class="top">
+  <div class="row" style="gap:8px"><a class="tbtn" href="index.html">Home</a></div>
+  <a class="brand" href="index.html#home" aria-label="NEhelp home" style="text-decoration:none"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--ink)"/><circle cx="12.5" cy="16" r="7" fill="#14B5AE"/><circle cx="19.5" cy="16" r="7" fill="#F2A541" opacity=".92"/></svg><span>NE<span class="hp">help</span></span></a>
+  <div class="right"><div class="rolesw" role="group" aria-label="Go to a dashboard"><a href="index.html#go-business"><span class="lg">Small business</span><span class="sm">Business</span></a><a href="index.html#go-company" aria-current="true">Company</a></div><a class="tbtn topmap" href="map.html" aria-pressed="false">Map</a></div>
+>>>>>>> Stashed changes
 </header>
 <main class="land" style="max-width:1040px">
   <div class="hero" style="gap:40px;align-items:start">
@@ -51,12 +59,23 @@
 
       <p class="hint" style="margin-top:20px">Run a small business? <a href="index.html" style="color:var(--pr);font-weight:600">Get help instead</a></p>
     </div>
+<<<<<<< Updated upstream
+=======
+    <form class="panel" id="login" novalidate>
+      <h2 style="font-size:24px;margin-bottom:16px">Company login</h2>
+      <label class="field"><span>Work email (optional in this demo)</span><input type="email" id="email" placeholder="partnerships@yourcompany.co.uk" autocomplete="email"></label>
+      <label class="field"><span>Six-digit code (optional in this demo)</span><input type="text" id="code" class="codes" inputmode="numeric" maxlength="6" placeholder="000000" autocomplete="one-time-code"><span class="hint" style="font-weight:400;margin-top:6px">You can leave this blank and carry on.</span></label>
+            <div class="row"><button class="btn pri" type="submit">Log in</button></div>
+      <p class="hint" style="margin-top:20px"><a href="map.html" style="color:var(--pr);font-weight:600">Browse the map</a> · New to NEhelp? <a href="index.html#go-company" id="join" style="color:var(--pr);font-weight:600">Join as a company</a></p>
+    </form>
+>>>>>>> Stashed changes
   </div>
 </main>
 
-<script src="js/state.js"></script>
+<script src="state.js"></script>
 <script>
 (function () {
+<<<<<<< Updated upstream
   var DISTRICTS = ["Newcastle", "Gateshead", "North Tyneside", "Sunderland", "Durham", "Northumberland"];
   var picked = { svc: CATS.slice(0, 3), where: ["Newcastle", "Gateshead"], help: ["Free", "Discounted"] };
 
@@ -67,6 +86,13 @@
       return '<button type="button" class="chip" data-k="' + key + '" data-v="' + esc(o) + '" aria-pressed="' + (picked[key].indexOf(o) > -1) + '"' + colour + ">" +
         (SVC[o] ? '<i class="sdot"></i>' : "") + esc(o) + "</button>";
     }).join("");
+=======
+  function enter(email) {
+    if (email) S.company.email = email;
+    S.role = "company";
+    save();
+    location.href = "index.html#" + (S.company.onboarded ? "c-requests" : "c-onboarding");
+>>>>>>> Stashed changes
   }
   function drawChips() { chips("su-svc", "svc", CATS); chips("su-where", "where", DISTRICTS); chips("su-help", "help", ["Free", "Discounted", "Paid"]); }
   drawChips();
