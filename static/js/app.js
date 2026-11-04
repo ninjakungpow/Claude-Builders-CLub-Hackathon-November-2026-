@@ -1,17 +1,20 @@
 // NEhelp: routing, button actions and start-up
 // Loaded as a plain script; everything shares one global scope, in the order index.html lists.
 
-var VIEWS={"b-issues":bIssues,"b-map":bMap,"b-new":bNew,"b-update":bUpdate,"b-companies":bCompanies,"c-requests":cRequests,"c-add":cAdd,"c-specialty":cSpec,"c-companies":cCompanies};
-function render(){var v=location.hash.slice(1),app=$("#app");menu();closeSide();
+var VIEWS={"b-issues":bIssues,"b-map":bMap,"b-new":bNew,"b-update":bUpdate,"b-companies":bCompanies,"c-requests":cRequests,"c-map":cMap,"c-add":cAdd,"c-specialty":cSpec,"c-companies":cCompanies};
+// Colour the whole site by side, and show the top Map button once someone is signed in.
+function topbar(v){document.body.dataset.side=S.role||"";var b=$("#topmap");b.hidden=!v;if(v){b.dataset.go=S.role==="business"?"b-map":"c-map";b.setAttribute("aria-pressed",String(v==="b-map"||v==="c-map"))}}
+function render(){var v=location.hash.slice(1),app=$("#app");menu();closeSide();topbar("");
 if(!S.role){app.innerHTML=landing();return}
 if(S.role==="business"&&!S.claimed){app.innerHTML=onboarding();return}
 if(!VIEWS[v]||v.charAt(0)!==(S.role==="business"?"b":"c")){v=S.role==="business"?"b-issues":"c-requests";history.replaceState(null,"","#"+v)}
-app.innerHTML=VIEWS[v]();if(v==="b-map")drawBizMap()}
+app.innerHTML=VIEWS[v]();topbar(v);if(v==="b-map"||v==="c-map")drawBizMap()}
 
 function after(m){save();render();refreshDlg();if(m)toast(m)}
 function act(a,d,el){var i=d.id?byId(d.id):null;
 switch(a){
 case"close":closeDlg();break;
+case"mapmode":S.ui.mapMode=d.m;after();break;
 case"how":var hw=document.getElementById("how");if(hw)hw.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});break;
 case"role":S.role=d.r;ob={step:1,mode:"ch",err:""};save();go(d.r==="business"?(S.claimed?"b-issues":"onboarding"):"c-requests");break;
 case"switch":S.role=S.role==="business"?"company":"business";$("#menu").hidden=true;save();location.hash=S.role==="business"?"b-issues":"c-requests";render();break;

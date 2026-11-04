@@ -141,3 +141,15 @@ dialog::backdrop{background:rgba(5,12,9,.55)}
 .bizmap{height:60vh;min-height:360px;border-radius:16px;border:1px solid var(--sf2);overflow:hidden}
 .maplegend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:10px;font-size:14px}
 .maplegend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+
+/* Side colours: small businesses are blue (the default teal), companies are orange */
+body[data-side] .top{border-top:4px solid var(--pr)}
+body[data-side="business"] .btn.cta{background:var(--pr);border-color:var(--pr);color:var(--on)}
+body[data-side="company"]{--pr:#B4570A;--pr2:#8A4204;--prs:#FDEBCB;--good-bg:#FDEBCB;--good-tx:#6B3A00}
+body[data-side="company"] .hp{color:#F2A541}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body[data-side="company"]{--pr:#F2A541;--pr2:#F7C877;--prs:#3F3012;--good-bg:#3F3012;--good-tx:#F7C877}}
+:root[data-theme="dark"] body[data-side="company"]{--pr:#F2A541;--pr2:#F7C877;--prs:#3F3012;--good-bg:#3F3012;--good-tx:#F7C877}
+
+/* Top bar Map button */
+.top .right{display:flex;align-items:center;justify-content:flex-end;gap:10px}
+.topmap[aria-pressed="true"]{background:var(--prs);color:var(--pr2);font-weight:600}

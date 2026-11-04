@@ -34,7 +34,7 @@ var CL={open:["Needs an employee","warn"],offered:["Offer sent",""],inprogress:[
 function pill(t,c){return'<span class="pill '+(c||"")+'">'+esc(t)+"</span>"}
 function catStatus(c){var a=mine().filter(function(i){return i.cat===c});function f(s){return a.filter(function(i){return i.status===s})[0]}
 var x;if(x=f("offered"))return["Offer waiting","warn"];if(x=f("open"))return["Looking for a company","warn"];if(x=f("inprogress"))return[COMP[x.company]||"In progress","good"];if(x=f("draft"))return["Draft",""];return["Not needed",""]}
-function nav(){return S.role==="business"?[["b-issues","Overview"],["b-new","List new issue"],["b-map","Map"],["b-update","Update issues"],["b-companies","Update company relationships"]]:[["c-requests","Overview"],["c-add","Add new employee"],["c-specialty","Update specialty"],["c-companies","View companies working with"]]}
+function nav(){return S.role==="business"?[["b-issues","Overview"],["b-new","List new issue"],["b-map","Map"],["b-update","Update issues"],["b-companies","Update company relationships"]]:[["c-requests","Overview"],["c-map","Map"],["c-add","Add new employee"],["c-specialty","Update specialty"],["c-companies","View companies working with"]]}
 var ob={step:1,mode:"ch",sent:false,err:""},req=null,openId=null,dlgKind=null,newErr="";
 
 function menu(){var m=$("#menu");m.innerHTML=S.role?'<p>Signed in as '+(S.role==="business"?esc(S.business.name):"Tyne Digital")+'</p><button data-a="switch">Switch to '+(S.role==="business"?"company":"business")+' view</button><button data-a="reset">Reset demo data</button>':'<p>Not signed in</p><button data-a="reset">Reset demo data</button>';$("#avatar").textContent=S.role==="company"?"TD":S.role==="business"?"CC":"AH"}
