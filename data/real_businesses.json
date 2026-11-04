@@ -1,0 +1,1602 @@
+[
+ {
+  "id": "r_heaton_0",
+  "name": "Finch Corner Pub",
+  "type": "Pub",
+  "area": "Heaton",
+  "lat": 54.97656,
+  "lng": -1.58401,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2025-07-30"
+  }
+ },
+ {
+  "id": "r_heaton_1",
+  "name": "Wren Court Beauty salon",
+  "type": "Beauty salon",
+  "area": "Heaton",
+  "lat": 54.97767,
+  "lng": -1.57804,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_2",
+  "name": "Wren Yard Pawnbroker",
+  "type": "Pawnbroker",
+  "area": "Heaton",
+  "lat": 54.97697,
+  "lng": -1.58314,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_3",
+  "name": "Rowan Hill Cosmetics",
+  "type": "Cosmetics",
+  "area": "Heaton",
+  "lat": 54.98339,
+  "lng": -1.576,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_4",
+  "name": "Heather Court Printer Ink",
+  "type": "Printer Ink",
+  "area": "Heaton",
+  "lat": 54.97762,
+  "lng": -1.57837,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_5",
+  "name": "Hazel House Hairdresser",
+  "type": "Hairdresser",
+  "area": "Heaton",
+  "lat": 54.97632,
+  "lng": -1.58723,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_6",
+  "name": "Bramble Bridge Restaurant",
+  "type": "Restaurant",
+  "area": "Heaton",
+  "lat": 54.97817,
+  "lng": -1.57539,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_7",
+  "name": "Sorrel Works Takeaway",
+  "type": "Takeaway",
+  "area": "Heaton",
+  "lat": 54.98069,
+  "lng": -1.58053,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2024-09-30"
+  }
+ },
+ {
+  "id": "r_heaton_8",
+  "name": "Juniper Green Pub",
+  "type": "Pub",
+  "area": "Heaton",
+  "lat": 54.97717,
+  "lng": -1.58953,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_9",
+  "name": "Poppy Mill Takeaway",
+  "type": "Takeaway",
+  "area": "Heaton",
+  "lat": 54.97765,
+  "lng": -1.57808,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2024-11-19"
+  }
+ },
+ {
+  "id": "r_heaton_10",
+  "name": "Moss Square Shoe Repair",
+  "type": "Shoe Repair",
+  "area": "Heaton",
+  "lat": 54.97787,
+  "lng": -1.57691,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_11",
+  "name": "Juniper Square Pub",
+  "type": "Pub",
+  "area": "Heaton",
+  "lat": 54.97739,
+  "lng": -1.57794,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2025-07-30"
+  }
+ },
+ {
+  "id": "r_heaton_12",
+  "name": "Linden Works Café",
+  "type": "Café",
+  "area": "Heaton",
+  "lat": 54.97791,
+  "lng": -1.57664,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2026-05-05"
+  }
+ },
+ {
+  "id": "r_heaton_13",
+  "name": "Larch Hill Funeral Directors",
+  "type": "Funeral Directors",
+  "area": "Heaton",
+  "lat": 54.97931,
+  "lng": -1.57469,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_14",
+  "name": "Holly Place Car Parts",
+  "type": "Car Parts",
+  "area": "Heaton",
+  "lat": 54.97932,
+  "lng": -1.57439,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_15",
+  "name": "Bramble Place Takeaway",
+  "type": "Takeaway",
+  "area": "Heaton",
+  "lat": 54.97796,
+  "lng": -1.57951,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_16",
+  "name": "Birch Row Florist",
+  "type": "Florist",
+  "area": "Heaton",
+  "lat": 54.9776,
+  "lng": -1.57857,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_17",
+  "name": "Elm Corner Takeaway",
+  "type": "Takeaway",
+  "area": "Heaton",
+  "lat": 54.98365,
+  "lng": -1.57609,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2025-01-16"
+  }
+ },
+ {
+  "id": "r_heaton_18",
+  "name": "Aspen Lane Gift shop",
+  "type": "Gift shop",
+  "area": "Heaton",
+  "lat": 54.97642,
+  "lng": -1.58501,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_19",
+  "name": "Clover Court Supermarket",
+  "type": "Supermarket",
+  "area": "Heaton",
+  "lat": 54.97677,
+  "lng": -1.58227,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_20",
+  "name": "Elm Gate Restaurant",
+  "type": "Restaurant",
+  "area": "Heaton",
+  "lat": 54.97797,
+  "lng": -1.57897,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 4,
+   "hygiene_date": "2026-02-18"
+  }
+ },
+ {
+  "id": "r_heaton_21",
+  "name": "Elm Lane Electronics",
+  "type": "Electronics",
+  "area": "Heaton",
+  "lat": 54.98012,
+  "lng": -1.5863,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_22",
+  "name": "Oak Square Phone shop",
+  "type": "Phone shop",
+  "area": "Heaton",
+  "lat": 54.97746,
+  "lng": -1.57764,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_23",
+  "name": "Thistle Lane Hairdresser",
+  "type": "Hairdresser",
+  "area": "Heaton",
+  "lat": 54.97654,
+  "lng": -1.58414,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_heaton_24",
+  "name": "Elm Corner Restaurant",
+  "type": "Restaurant",
+  "area": "Heaton",
+  "lat": 54.98447,
+  "lng": -1.5855,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2025-02-13"
+  }
+ },
+ {
+  "id": "r_jesmond_0",
+  "name": "Moss Street Car Repair",
+  "type": "Car Repair",
+  "area": "Jesmond",
+  "lat": 54.98879,
+  "lng": -1.59975,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_jesmond_1",
+  "name": "Robin Bridge Pub",
+  "type": "Pub",
+  "area": "Jesmond",
+  "lat": 54.985,
+  "lng": -1.61042,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_jesmond_2",
+  "name": "Birch Row Hairdresser",
+  "type": "Hairdresser",
+  "area": "Jesmond",
+  "lat": 54.98745,
+  "lng": -1.60558,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_jesmond_3",
+  "name": "Juniper Row Hairdresser",
+  "type": "Hairdresser",
+  "area": "Jesmond",
+  "lat": 54.98153,
+  "lng": -1.60181,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_jesmond_4",
+  "name": "Poppy Place Bar",
+  "type": "Bar",
+  "area": "Jesmond",
+  "lat": 54.98121,
+  "lng": -1.60537,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_jesmond_5",
+  "name": "Rowan Works Pub",
+  "type": "Pub",
+  "area": "Jesmond",
+  "lat": 54.98559,
+  "lng": -1.5967,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2025-09-24"
+  }
+ },
+ {
+  "id": "r_jesmond_6",
+  "name": "Hazel House Takeaway",
+  "type": "Takeaway",
+  "area": "Jesmond",
+  "lat": 54.98543,
+  "lng": -1.61057,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2024-07-18"
+  }
+ },
+ {
+  "id": "r_jesmond_7",
+  "name": "Fern Row Restaurant",
+  "type": "Restaurant",
+  "area": "Jesmond",
+  "lat": 54.98581,
+  "lng": -1.5964,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_jesmond_8",
+  "name": "Lark Green Restaurant",
+  "type": "Restaurant",
+  "area": "Jesmond",
+  "lat": 54.98847,
+  "lng": -1.60573,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_jesmond_9",
+  "name": "Oak Place Hairdresser",
+  "type": "Hairdresser",
+  "area": "Jesmond",
+  "lat": 54.98537,
+  "lng": -1.61055,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_jesmond_10",
+  "name": "Robin Bridge Corner shop",
+  "type": "Corner shop",
+  "area": "Jesmond",
+  "lat": 54.98517,
+  "lng": -1.61063,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 3,
+   "hygiene_date": "2024-07-11"
+  }
+ },
+ {
+  "id": "r_jesmond_11",
+  "name": "Lark Court Pub",
+  "type": "Pub",
+  "area": "Jesmond",
+  "lat": 54.98127,
+  "lng": -1.60595,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2025-05-06"
+  }
+ },
+ {
+  "id": "r_jesmond_12",
+  "name": "Birch Lane Corner shop",
+  "type": "Corner shop",
+  "area": "Jesmond",
+  "lat": 54.98853,
+  "lng": -1.60014,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 1,
+   "hygiene_date": "2026-05-28"
+  }
+ },
+ {
+  "id": "r_jesmond_13",
+  "name": "Thistle Court Café",
+  "type": "Café",
+  "area": "Jesmond",
+  "lat": 54.98638,
+  "lng": -1.61132,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2025-11-12"
+  }
+ },
+ {
+  "id": "r_jesmond_14",
+  "name": "Finch Lane Computer",
+  "type": "Computer",
+  "area": "Jesmond",
+  "lat": 54.98518,
+  "lng": -1.61055,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_jesmond_15",
+  "name": "Oak Green Pub",
+  "type": "Pub",
+  "area": "Jesmond",
+  "lat": 54.98192,
+  "lng": -1.60483,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 4,
+   "hygiene_date": "2026-03-27"
+  }
+ },
+ {
+  "id": "r_jesmond_16",
+  "name": "Wren Bridge Restaurant",
+  "type": "Restaurant",
+  "area": "Jesmond",
+  "lat": 54.9881,
+  "lng": -1.6059,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_jesmond_17",
+  "name": "Elm Yard Café",
+  "type": "Café",
+  "area": "Jesmond",
+  "lat": 54.98575,
+  "lng": -1.60838,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 3,
+   "hygiene_date": "2025-08-28"
+  }
+ },
+ {
+  "id": "r_jesmond_18",
+  "name": "Alder Place Café",
+  "type": "Café",
+  "area": "Jesmond",
+  "lat": 54.98129,
+  "lng": -1.60331,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2024-09-06"
+  }
+ },
+ {
+  "id": "r_jesmond_19",
+  "name": "Heather Row Window Blind",
+  "type": "Window Blind",
+  "area": "Jesmond",
+  "lat": 54.98321,
+  "lng": -1.59818,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_jesmond_20",
+  "name": "Lark Works Restaurant",
+  "type": "Restaurant",
+  "area": "Jesmond",
+  "lat": 54.98798,
+  "lng": -1.60595,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": true,
+   "hygiene_rating": 5,
+   "hygiene_date": "2026-08-28"
+  }
+ },
+ {
+  "id": "r_jesmond_21",
+  "name": "Maple Yard Beauty salon",
+  "type": "Beauty salon",
+  "area": "Jesmond",
+  "lat": 54.98853,
+  "lng": -1.6,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_jesmond_22",
+  "name": "Cedar Lane Café",
+  "type": "Café",
+  "area": "Jesmond",
+  "lat": 54.98849,
+  "lng": -1.60639,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2026-08-28"
+  }
+ },
+ {
+  "id": "r_jesmond_23",
+  "name": "Cedar House Kiosk",
+  "type": "Kiosk",
+  "area": "Jesmond",
+  "lat": 54.98286,
+  "lng": -1.60581,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_jesmond_24",
+  "name": "Robin Mill Restaurant",
+  "type": "Restaurant",
+  "area": "Jesmond",
+  "lat": 54.98163,
+  "lng": -1.5977,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2024-08-22"
+  }
+ },
+ {
+  "id": "r_ouseburn_0",
+  "name": "Ivy Green Restaurant",
+  "type": "Restaurant",
+  "area": "Ouseburn",
+  "lat": 54.9729,
+  "lng": -1.58847,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_1",
+  "name": "Lark Lane Car Repair",
+  "type": "Car Repair",
+  "area": "Ouseburn",
+  "lat": 54.96829,
+  "lng": -1.59497,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_2",
+  "name": "Oak Hill Gift shop",
+  "type": "Gift shop",
+  "area": "Ouseburn",
+  "lat": 54.97455,
+  "lng": -1.59238,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_3",
+  "name": "Alder Bridge Takeaway",
+  "type": "Takeaway",
+  "area": "Ouseburn",
+  "lat": 54.97698,
+  "lng": -1.60104,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2025-02-13"
+  }
+ },
+ {
+  "id": "r_ouseburn_4",
+  "name": "Ivy Lane Pub",
+  "type": "Pub",
+  "area": "Ouseburn",
+  "lat": 54.97475,
+  "lng": -1.5948,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2025-11-13"
+  }
+ },
+ {
+  "id": "r_ouseburn_5",
+  "name": "Willow Street Bar",
+  "type": "Bar",
+  "area": "Ouseburn",
+  "lat": 54.97196,
+  "lng": -1.58829,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_6",
+  "name": "Wren Yard Car Repair",
+  "type": "Car Repair",
+  "area": "Ouseburn",
+  "lat": 54.97506,
+  "lng": -1.59485,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": true,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_7",
+  "name": "Thistle House Curtain",
+  "type": "Curtain",
+  "area": "Ouseburn",
+  "lat": 54.97408,
+  "lng": -1.59087,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_8",
+  "name": "Hazel Square Florist",
+  "type": "Florist",
+  "area": "Ouseburn",
+  "lat": 54.97548,
+  "lng": -1.59314,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_9",
+  "name": "Fern Court Restaurant",
+  "type": "Restaurant",
+  "area": "Ouseburn",
+  "lat": 54.97517,
+  "lng": -1.58693,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_10",
+  "name": "Primrose Works Pub",
+  "type": "Pub",
+  "area": "Ouseburn",
+  "lat": 54.97418,
+  "lng": -1.60384,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2024-12-10"
+  }
+ },
+ {
+  "id": "r_ouseburn_11",
+  "name": "Poppy Lane Scuba Diving",
+  "type": "Scuba Diving",
+  "area": "Ouseburn",
+  "lat": 54.97481,
+  "lng": -1.59632,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_12",
+  "name": "Birch Corner Car Repair",
+  "type": "Car Repair",
+  "area": "Ouseburn",
+  "lat": 54.96821,
+  "lng": -1.59517,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_13",
+  "name": "Primrose Green Pub",
+  "type": "Pub",
+  "area": "Ouseburn",
+  "lat": 54.9751,
+  "lng": -1.59175,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": 4,
+   "hygiene_date": "2024-06-12"
+  }
+ },
+ {
+  "id": "r_ouseburn_14",
+  "name": "Rowan Court Café",
+  "type": "Café",
+  "area": "Ouseburn",
+  "lat": 54.97534,
+  "lng": -1.59142,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2026-09-14"
+  }
+ },
+ {
+  "id": "r_ouseburn_15",
+  "name": "Maple Bridge Restaurant",
+  "type": "Restaurant",
+  "area": "Ouseburn",
+  "lat": 54.97653,
+  "lng": -1.59567,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 4,
+   "hygiene_date": "2024-08-12"
+  }
+ },
+ {
+  "id": "r_ouseburn_16",
+  "name": "Holly Gate Car Repair",
+  "type": "Car Repair",
+  "area": "Ouseburn",
+  "lat": 54.97456,
+  "lng": -1.59022,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_17",
+  "name": "Poppy Yard General",
+  "type": "General",
+  "area": "Ouseburn",
+  "lat": 54.97555,
+  "lng": -1.59435,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_18",
+  "name": "Alder Yard Café",
+  "type": "Café",
+  "area": "Ouseburn",
+  "lat": 54.97426,
+  "lng": -1.60416,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_19",
+  "name": "Maple House Café",
+  "type": "Café",
+  "area": "Ouseburn",
+  "lat": 54.97679,
+  "lng": -1.59868,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": true,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_20",
+  "name": "Holly Green Vape shop",
+  "type": "Vape shop",
+  "area": "Ouseburn",
+  "lat": 54.97699,
+  "lng": -1.60078,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_21",
+  "name": "Robin Bridge Supermarket",
+  "type": "Supermarket",
+  "area": "Ouseburn",
+  "lat": 54.97232,
+  "lng": -1.60282,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_22",
+  "name": "Maple Green Laundrette",
+  "type": "Laundrette",
+  "area": "Ouseburn",
+  "lat": 54.97705,
+  "lng": -1.59997,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_ouseburn_23",
+  "name": "Holly Row Bar",
+  "type": "Bar",
+  "area": "Ouseburn",
+  "lat": 54.97325,
+  "lng": -1.58912,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2025-02-12"
+  }
+ },
+ {
+  "id": "r_ouseburn_24",
+  "name": "Larch Row General",
+  "type": "General",
+  "area": "Ouseburn",
+  "lat": 54.97485,
+  "lng": -1.59241,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_0",
+  "name": "Willow Court Pub",
+  "type": "Pub",
+  "area": "Gateshead",
+  "lat": 54.96138,
+  "lng": -1.60658,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_1",
+  "name": "Robin Court Takeaway",
+  "type": "Takeaway",
+  "area": "Gateshead",
+  "lat": 54.96134,
+  "lng": -1.60001,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_2",
+  "name": "Larch Square Restaurant",
+  "type": "Restaurant",
+  "area": "Gateshead",
+  "lat": 54.96327,
+  "lng": -1.60076,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2026-03-05"
+  }
+ },
+ {
+  "id": "r_gateshead_3",
+  "name": "Moss Square Pub",
+  "type": "Pub",
+  "area": "Gateshead",
+  "lat": 54.96518,
+  "lng": -1.60452,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2025-08-13"
+  }
+ },
+ {
+  "id": "r_gateshead_4",
+  "name": "Larch Row Grocery",
+  "type": "Grocery",
+  "area": "Gateshead",
+  "lat": 54.9615,
+  "lng": -1.60244,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_5",
+  "name": "Holly Works Charity shop",
+  "type": "Charity shop",
+  "area": "Gateshead",
+  "lat": 54.96168,
+  "lng": -1.60254,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_6",
+  "name": "Oak Hill Vape",
+  "type": "Vape",
+  "area": "Gateshead",
+  "lat": 54.96322,
+  "lng": -1.60074,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_7",
+  "name": "Aspen Gate Hairdresser",
+  "type": "Hairdresser",
+  "area": "Gateshead",
+  "lat": 54.96165,
+  "lng": -1.60157,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_8",
+  "name": "Aspen Hill Tattoo studio",
+  "type": "Tattoo studio",
+  "area": "Gateshead",
+  "lat": 54.96134,
+  "lng": -1.60292,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_9",
+  "name": "Lark Corner Café",
+  "type": "Café",
+  "area": "Gateshead",
+  "lat": 54.96058,
+  "lng": -1.60409,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_10",
+  "name": "Moss Green Charity shop",
+  "type": "Charity shop",
+  "area": "Gateshead",
+  "lat": 54.96198,
+  "lng": -1.60093,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_11",
+  "name": "Linden Court Beauty salon",
+  "type": "Beauty salon",
+  "area": "Gateshead",
+  "lat": 54.9625,
+  "lng": -1.60306,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_12",
+  "name": "Linden Hill Music",
+  "type": "Music",
+  "area": "Gateshead",
+  "lat": 54.96527,
+  "lng": -1.60245,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_13",
+  "name": "Alder Street Clothes shop",
+  "type": "Clothes shop",
+  "area": "Gateshead",
+  "lat": 54.96154,
+  "lng": -1.60225,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_14",
+  "name": "Cedar Square Restaurant",
+  "type": "Restaurant",
+  "area": "Gateshead",
+  "lat": 54.96241,
+  "lng": -1.60152,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_15",
+  "name": "Linden Court Gift shop",
+  "type": "Gift shop",
+  "area": "Gateshead",
+  "lat": 54.96164,
+  "lng": -1.60168,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_16",
+  "name": "Rowan Row Takeaway",
+  "type": "Takeaway",
+  "area": "Gateshead",
+  "lat": 54.96109,
+  "lng": -1.59994,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 5,
+   "hygiene_date": "2025-08-13"
+  }
+ },
+ {
+  "id": "r_gateshead_17",
+  "name": "Alder Hill Café",
+  "type": "Café",
+  "area": "Gateshead",
+  "lat": 54.95925,
+  "lng": -1.60292,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_18",
+  "name": "Cedar Hill Beauty salon",
+  "type": "Beauty salon",
+  "area": "Gateshead",
+  "lat": 54.96196,
+  "lng": -1.60104,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_19",
+  "name": "Moss Green Greengrocer",
+  "type": "Greengrocer",
+  "area": "Gateshead",
+  "lat": 54.96193,
+  "lng": -1.60112,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_20",
+  "name": "Hazel Gate Pub",
+  "type": "Pub",
+  "area": "Gateshead",
+  "lat": 54.9618,
+  "lng": -1.60066,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": 4,
+   "hygiene_date": "2025-02-25"
+  }
+ },
+ {
+  "id": "r_gateshead_21",
+  "name": "Clover House Pub",
+  "type": "Pub",
+  "area": "Gateshead",
+  "lat": 54.96528,
+  "lng": -1.60633,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_22",
+  "name": "Cedar Court Optician",
+  "type": "Optician",
+  "area": "Gateshead",
+  "lat": 54.96112,
+  "lng": -1.6028,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": true,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_23",
+  "name": "Finch Lane Café",
+  "type": "Café",
+  "area": "Gateshead",
+  "lat": 54.96129,
+  "lng": -1.6029,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ },
+ {
+  "id": "r_gateshead_24",
+  "name": "Linden House Charity shop",
+  "type": "Charity shop",
+  "area": "Gateshead",
+  "lat": 54.96157,
+  "lng": -1.60208,
+  "claimed": false,
+  "real": true,
+  "public": {
+   "has_website": false,
+   "has_social": null,
+   "hygiene_rating": null,
+   "hygiene_date": null
+  }
+ }
+]

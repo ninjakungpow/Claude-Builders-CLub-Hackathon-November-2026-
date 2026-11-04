@@ -1,0 +1,709 @@
+{
+  "_note": "SAMPLE DATA. Every business, provider, rating and comment here is made up for the demo. Neighbourhood names are real Newcastle and Gateshead areas; the businesses are not.",
+  "needs": [
+    {
+      "key": "card_payments",
+      "label": "Card payments"
+    },
+    {
+      "key": "banking",
+      "label": "Business banking"
+    },
+    {
+      "key": "accounting",
+      "label": "Accounting & tax"
+    },
+    {
+      "key": "marketing",
+      "label": "Marketing"
+    },
+    {
+      "key": "social_media",
+      "label": "Social media"
+    },
+    {
+      "key": "website",
+      "label": "Website"
+    },
+    {
+      "key": "hiring",
+      "label": "Staff & trainees"
+    }
+  ],
+  "providers": [
+    {
+      "id": "p_tappay",
+      "name": "TapPay",
+      "kind": "Card payments",
+      "categories": [
+        "card_payments"
+      ]
+    },
+    {
+      "id": "p_northline",
+      "name": "Northline Bank",
+      "kind": "Business bank",
+      "categories": [
+        "banking"
+      ]
+    },
+    {
+      "id": "p_ledger",
+      "name": "Ledger & Co Accountants",
+      "kind": "Accountants",
+      "categories": [
+        "accounting"
+      ]
+    },
+    {
+      "id": "p_spark",
+      "name": "Spark Social",
+      "kind": "Marketing agency",
+      "categories": [
+        "marketing",
+        "social_media"
+      ]
+    },
+    {
+      "id": "p_webwise",
+      "name": "Webwise Studio",
+      "kind": "Web design",
+      "categories": [
+        "website"
+      ]
+    },
+    {
+      "id": "p_hirehub",
+      "name": "HireHub",
+      "kind": "Recruitment",
+      "categories": [
+        "hiring"
+      ]
+    }
+  ],
+  "businesses": [
+    {
+      "id": "b_amara",
+      "name": "Amara's Hair Studio",
+      "type": "Hairdresser",
+      "area": "Heaton",
+      "lat": 54.9806,
+      "lng": -1.5822,
+      "claimed": true,
+      "public": {
+        "has_website": false,
+        "has_social": false,
+        "hygiene_rating": null
+      },
+      "offers": [
+        "Qualified hairdressing tutor: happy to train apprentices"
+      ],
+      "needs": {
+        "card_payments": {
+          "status": "happy",
+          "provider": "p_tappay",
+          "rating": 5,
+          "comment": "Money lands next day.",
+          "note": "",
+          "shared": true
+        },
+        "banking": {
+          "status": "happy",
+          "provider": "p_northline",
+          "rating": 4,
+          "comment": "",
+          "note": "",
+          "shared": true
+        },
+        "accounting": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "I do my own tax return and find it stressful.",
+          "shared": true
+        },
+        "marketing": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "Most clients come by word of mouth.",
+          "shared": true
+        },
+        "social_media": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "No Instagram yet.",
+          "shared": true
+        },
+        "website": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "Not sure I need one.",
+          "shared": false
+        },
+        "hiring": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "Looking for an apprentice to train.",
+          "shared": true
+        }
+      },
+      "signals": [
+        {
+          "text": "No accountant listed and the Self Assessment deadline is 31 January.",
+          "source": "Guess from your profile"
+        },
+        {
+          "text": "No Instagram or Facebook page found for this business name.",
+          "source": "Sample web check"
+        }
+      ]
+    },
+    {
+      "id": "b_littleoak",
+      "name": "Little Oak Café",
+      "type": "Café",
+      "area": "Ouseburn",
+      "lat": 54.9741,
+      "lng": -1.5952,
+      "claimed": true,
+      "public": {
+        "has_website": true,
+        "has_social": true,
+        "hygiene_rating": 3
+      },
+      "offers": [],
+      "needs": {
+        "card_payments": {
+          "status": "unhappy",
+          "provider": "p_tappay",
+          "rating": 2,
+          "comment": "Fees went up twice this year.",
+          "note": "",
+          "shared": true
+        },
+        "banking": {
+          "status": "happy",
+          "provider": "p_northline",
+          "rating": 4,
+          "comment": "",
+          "note": "",
+          "shared": false
+        },
+        "accounting": {
+          "status": "happy",
+          "provider": "p_ledger",
+          "rating": 4,
+          "comment": "Friendly and quick.",
+          "note": "",
+          "shared": true
+        },
+        "marketing": {
+          "status": "past",
+          "provider": "p_spark",
+          "rating": 3,
+          "comment": "",
+          "note": "Might try again in spring.",
+          "shared": true
+        },
+        "social_media": {
+          "status": "happy",
+          "provider": "p_spark",
+          "rating": 5,
+          "comment": "Our Instagram finally looks good.",
+          "note": "",
+          "shared": true
+        },
+        "website": {
+          "status": "happy",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "Built it ourselves.",
+          "shared": true
+        },
+        "hiring": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "Need a weekend barista.",
+          "shared": true
+        }
+      },
+      "signals": [
+        {
+          "text": "Food hygiene rating is 3. A re-inspection could raise it.",
+          "source": "Sample FSA rating"
+        },
+        {
+          "text": "Your barista job ad has been running for 6 weeks.",
+          "source": "Sample job board check"
+        }
+      ]
+    },
+    {
+      "id": "b_spoke",
+      "name": "Spoke & Chain Bike Repair",
+      "type": "Bike shop",
+      "area": "Jesmond",
+      "lat": 54.9851,
+      "lng": -1.6041,
+      "claimed": true,
+      "public": {
+        "has_website": true,
+        "has_social": false,
+        "hygiene_rating": null
+      },
+      "offers": [
+        "Free bike safety checks for local schools"
+      ],
+      "needs": {
+        "card_payments": {
+          "status": "happy",
+          "provider": "p_tappay",
+          "rating": 4,
+          "comment": "",
+          "note": "",
+          "shared": true
+        },
+        "banking": {
+          "status": "happy",
+          "provider": "p_northline",
+          "rating": 3,
+          "comment": "",
+          "note": "",
+          "shared": true
+        },
+        "accounting": {
+          "status": "past",
+          "provider": "p_ledger",
+          "rating": 3,
+          "comment": "",
+          "note": "Stopped to save money.",
+          "shared": true
+        },
+        "marketing": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "",
+          "shared": false
+        },
+        "social_media": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "Students are our main customers.",
+          "shared": true
+        },
+        "website": {
+          "status": "happy",
+          "provider": "p_webwise",
+          "rating": 4,
+          "comment": "",
+          "note": "",
+          "shared": true
+        },
+        "hiring": {
+          "status": "unknown",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "",
+          "shared": false
+        }
+      },
+      "signals": [
+        {
+          "text": "No social media found, but most customers are students.",
+          "source": "Sample web check"
+        }
+      ]
+    },
+    {
+      "id": "b_bloom",
+      "name": "Bloom Lane Florist",
+      "type": "Florist",
+      "area": "Jesmond",
+      "lat": 54.9832,
+      "lng": -1.6068,
+      "claimed": true,
+      "public": {
+        "has_website": false,
+        "has_social": true,
+        "hygiene_rating": null
+      },
+      "offers": [],
+      "needs": {
+        "card_payments": {
+          "status": "unhappy",
+          "provider": "other",
+          "rating": 2,
+          "comment": "Card reader keeps dropping out.",
+          "note": "",
+          "shared": true
+        },
+        "banking": {
+          "status": "happy",
+          "provider": "other",
+          "rating": 4,
+          "comment": "",
+          "note": "",
+          "shared": false
+        },
+        "accounting": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "",
+          "shared": true
+        },
+        "marketing": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "Weddings are our big earner.",
+          "shared": true
+        },
+        "social_media": {
+          "status": "happy",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "I run our Instagram myself.",
+          "shared": true
+        },
+        "website": {
+          "status": "past",
+          "provider": "p_webwise",
+          "rating": 2,
+          "comment": "",
+          "note": "Old site went offline.",
+          "shared": true
+        },
+        "hiring": {
+          "status": "unknown",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "",
+          "shared": false
+        }
+      },
+      "signals": [
+        {
+          "text": "Wedding customers often search online before visiting.",
+          "source": "Guess from your profile"
+        }
+      ]
+    },
+    {
+      "id": "b_needle",
+      "name": "Needle & Thread Alterations",
+      "type": "Tailor",
+      "area": "Gateshead",
+      "lat": 54.9614,
+      "lng": -1.6022,
+      "claimed": true,
+      "public": {
+        "has_website": false,
+        "has_social": false,
+        "hygiene_rating": null
+      },
+      "offers": [],
+      "needs": {
+        "card_payments": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "Cash only. Losing some customers.",
+          "shared": true
+        },
+        "banking": {
+          "status": "unknown",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "",
+          "shared": false
+        },
+        "accounting": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "",
+          "shared": false
+        },
+        "marketing": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "",
+          "shared": false
+        },
+        "social_media": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "",
+          "shared": false
+        },
+        "website": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "",
+          "shared": false
+        },
+        "hiring": {
+          "status": "unknown",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "",
+          "shared": false
+        }
+      },
+      "signals": [
+        {
+          "text": "Cash-only businesses can miss passing trade.",
+          "source": "Guess from your profile"
+        }
+      ]
+    },
+    {
+      "id": "b_holbeck",
+      "name": "Tyne Street Bakehouse",
+      "type": "Bakery",
+      "area": "Gateshead",
+      "lat": 54.9629,
+      "lng": -1.5994,
+      "claimed": true,
+      "public": {
+        "has_website": true,
+        "has_social": true,
+        "hygiene_rating": 5
+      },
+      "offers": [
+        "Baking workshops for local groups"
+      ],
+      "needs": {
+        "card_payments": {
+          "status": "happy",
+          "provider": "p_tappay",
+          "rating": 5,
+          "comment": "Never had a problem.",
+          "note": "",
+          "shared": true
+        },
+        "banking": {
+          "status": "unhappy",
+          "provider": "p_northline",
+          "rating": 2,
+          "comment": "Hard to reach anyone by phone.",
+          "note": "",
+          "shared": true
+        },
+        "accounting": {
+          "status": "happy",
+          "provider": "p_ledger",
+          "rating": 5,
+          "comment": "Saved us a lot on VAT.",
+          "note": "",
+          "shared": true
+        },
+        "marketing": {
+          "status": "happy",
+          "provider": "p_spark",
+          "rating": 4,
+          "comment": "",
+          "note": "",
+          "shared": true
+        },
+        "social_media": {
+          "status": "happy",
+          "provider": "p_spark",
+          "rating": 4,
+          "comment": "",
+          "note": "",
+          "shared": true
+        },
+        "website": {
+          "status": "happy",
+          "provider": "p_webwise",
+          "rating": 4,
+          "comment": "",
+          "note": "",
+          "shared": true
+        },
+        "hiring": {
+          "status": "none",
+          "provider": null,
+          "rating": null,
+          "comment": "",
+          "note": "Need an early-morning baker.",
+          "shared": true
+        }
+      },
+      "signals": []
+    },
+    {
+      "id": "u_harehills",
+      "name": "Harehills Grocers",
+      "type": "Grocer",
+      "area": "Harehills",
+      "lat": 53.8112,
+      "lng": -1.5203,
+      "claimed": false,
+      "public": {
+        "has_website": false,
+        "has_social": false,
+        "hygiene_rating": 4
+      }
+    },
+    {
+      "id": "u_fade",
+      "name": "Fade Kings Barbers",
+      "type": "Barber",
+      "area": "Harehills",
+      "lat": 53.8089,
+      "lng": -1.5241,
+      "claimed": false,
+      "public": {
+        "has_website": false,
+        "has_social": true,
+        "hygiene_rating": null
+      }
+    },
+    {
+      "id": "u_paws",
+      "name": "Roundhay Pet Grooming",
+      "type": "Pet groomer",
+      "area": "Roundhay",
+      "lat": 53.8331,
+      "lng": -1.5102,
+      "claimed": false,
+      "public": {
+        "has_website": true,
+        "has_social": true,
+        "hygiene_rating": null
+      }
+    },
+    {
+      "id": "u_books",
+      "name": "Chapel Allerton Books",
+      "type": "Bookshop",
+      "area": "Chapel Allerton",
+      "lat": 53.8271,
+      "lng": -1.5398,
+      "claimed": false,
+      "public": {
+        "has_website": true,
+        "has_social": false,
+        "hygiene_rating": null
+      }
+    },
+    {
+      "id": "u_nails",
+      "name": "Headingley Nail Bar",
+      "type": "Nail salon",
+      "area": "Headingley",
+      "lat": 53.8193,
+      "lng": -1.5771,
+      "claimed": false,
+      "public": {
+        "has_website": false,
+        "has_social": true,
+        "hygiene_rating": null
+      }
+    },
+    {
+      "id": "u_keys",
+      "name": "Kirkgate Key Cutting",
+      "type": "Key cutter",
+      "area": "Kirkgate",
+      "lat": 53.7979,
+      "lng": -1.5418,
+      "claimed": false,
+      "public": {
+        "has_website": false,
+        "has_social": false,
+        "hygiene_rating": null
+      }
+    },
+    {
+      "id": "u_fish",
+      "name": "Armley Fish Bar",
+      "type": "Takeaway",
+      "area": "Armley",
+      "lat": 53.8008,
+      "lng": -1.5872,
+      "claimed": false,
+      "public": {
+        "has_website": false,
+        "has_social": true,
+        "hygiene_rating": 2
+      }
+    },
+    {
+      "id": "u_laundry",
+      "name": "Hyde Park Laundrette",
+      "type": "Laundrette",
+      "area": "Hyde Park",
+      "lat": 53.8089,
+      "lng": -1.5633,
+      "claimed": false,
+      "public": {
+        "has_website": false,
+        "has_social": false,
+        "hygiene_rating": null
+      }
+    },
+    {
+      "id": "u_yoga",
+      "name": "Meanwood Yoga Studio",
+      "type": "Yoga studio",
+      "area": "Meanwood",
+      "lat": 53.8279,
+      "lng": -1.5651,
+      "claimed": false,
+      "public": {
+        "has_website": true,
+        "has_social": true,
+        "hygiene_rating": null
+      }
+    },
+    {
+      "id": "u_print",
+      "name": "Holbeck Print Shop",
+      "type": "Printer",
+      "area": "Holbeck",
+      "lat": 53.7901,
+      "lng": -1.5632,
+      "claimed": false,
+      "public": {
+        "has_website": true,
+        "has_social": false,
+        "hygiene_rating": null
+      }
+    }
+  ]
+}

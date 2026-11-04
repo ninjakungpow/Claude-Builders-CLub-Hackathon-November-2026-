@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEhelp</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="map-page.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">📍</span>
+      <div>
+        <h1>NEhelp</h1>
+        <p class="tagline">Small businesses and the people who can help them, on one map.</p>
+      </div>
+    </div>
+    <div class="roles" role="tablist" aria-label="Choose who you are">
+      <button role="tab" data-role="owner" aria-selected="true">I run a small business</button>
+      <button role="tab" data-role="provider" aria-selected="false">I'm a provider</button>
+    </div>
+  </header>
+
+  <div class="sample-banner">
+    Businesses not signed up are real, with <b>names changed</b>. Signed-up profiles, providers and ratings are made up for the demo.
+    Hygiene ratings: Food Standards Agency, Open Government Licence v3.0. Business data © OpenStreetMap contributors (ODbL).
+  </div>
+
+  <main class="layout">
+    <div id="map" aria-label="Map of businesses in Newcastle and Gateshead"></div>
+
+    <aside class="panel">
+      <!-- Small business owner view -->
+      <section id="owner-view">
+        <label class="field">
+          <span>Your business</span>
+          <select id="business-select"></select>
+        </label>
+        <div id="business-header" class="card"></div>
+
+        <div class="card private">
+          <h2>🔒 Only you can see this</h2>
+          <p class="muted">Guesses we made from public data. Providers never see these.</p>
+          <ul id="signals"></ul>
+        </div>
+
+        <div class="card">
+          <h2>Your needs</h2>
+          <p class="muted">Tick what you use and how it's going. Switch on <b>Show providers</b> for anything you'd like offers for.</p>
+          <div id="needs-form"></div>
+          <div class="actions">
+            <button id="save-needs" class="primary">Save</button>
+            <span id="save-status" class="muted" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>✨ Ask the adviser</h2>
+          <p class="muted">Claude looks at your profile and tells you honestly what you need, including what you can skip.</p>
+          <button id="advise" class="primary">What do I actually need?</button>
+          <div id="advice" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- Provider view -->
+      <section id="provider-view" hidden>
+        <label class="field">
+          <span>Your company</span>
+          <select id="provider-select"></select>
+        </label>
+        <div id="legend" class="card"></div>
+        <div class="card">
+          <h2>Businesses near you</h2>
+          <p class="muted">You only see public facts and the needs owners chose to share.</p>
+          <ul id="leads"></ul>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="map-page.js"></script>
+</body>
+</html>
