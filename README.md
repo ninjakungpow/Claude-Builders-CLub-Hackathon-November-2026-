@@ -1,44 +1,64 @@
 # NEhelp
 
-A map that connects small businesses with the providers who can help them.
+Small businesses and the larger companies who can help them, in one place. "NEhelp" sounds like "any help", and it means North East help.
 
-- **Small businesses** sign up cheaply, list what they use and how happy they are, and get honest advice from Claude about what they actually need, including what they can skip.
-- **Providers** (banks, card payment firms, accountants, marketing agencies) pay to see who wants help, who has no provider and which of their own customers are happy.
+- **Small businesses** claim a page, say what would help in plain words, and get offers from larger companies nearby.
+- **Companies** share spare time and skills, see the requests that fit their team, and make offers under a short agreement.
+- **A map** shows local businesses and who is already on NEhelp.
 
-**Status:** hackathon demo. All data is made up (see `data/sample_data.json`).
+**Status:** hackathon demo. Signed-up profiles, requests, offers and ratings are made up. Businesses on the map that haven't signed up are real, with names changed.
+
+## Run it
+
+It's plain HTML, CSS and JavaScript. There is nothing to install or build.
+
+- Open `index.html` in a browser, or
+- put the folder on any static host (GitHub Pages, Netlify, Cloudflare Pages and so on).
+
+Fonts and the map library (Leaflet) load from the internet, and the map needs internet for its tiles. The dashboards, onboarding, offers and account pages don't need a server at all.
 
 ## Privacy: three layers
+
+The idea behind NEhelp is that each person only sees what they should.
 
 | Layer | Example | Who sees it |
 |---|---|---|
 | Public facts | Name, area, has a website? | Everyone |
-| Needs the owner shares | "Wants help with taxes" | Providers, only if the owner ticks **Show providers** |
+| Needs the owner shares | "Wants help with taxes" | Companies and providers, only if the owner chooses to share it |
 | Private guesses | "No accountant and the tax deadline is 31 January" | The owner only |
 
-The server enforces this in `app.py` (`public_view`, `provider_view`, `match_for`), so private data never reaches a provider's browser. A provider is also never told *which* competitor an unhappy business uses.
+In this static demo each screen simply shows the right layer for its role. Nothing enforces it behind the scenes, so treat it as a working picture of the rule, not a security guarantee. A real version would enforce it on a server, so private data never reaches another person's browser, and a provider would never be told *which* competitor an unhappy business uses.
 
-## How Claude is used
+## Where Claude fits
 
-The **adviser** (`/api/business/<id>/advise`) sends the owner's profile to Claude Opus 5.5 and gets back structured advice for every need: *sort this now*, *worth considering*, *you can skip this* or *already sorted*, each with a reason and a next step. It's told to take the owner's side and not push paid services they don't need.
+In the full design, Claude does two jobs:
 
-## Run it
+- **Request drafting** (**List new issue**) turns a few plain words into a clear request, which the owner checks before sending.
+- **The adviser** (on `map.html`) reads an owner's profile and gives advice on every need: *sort this now*, *worth considering*, *you can skip this* or *already sorted*, each with a reason and a next step. It takes the owner's side and doesn't push paid services they don't need.
 
-You need [uv](https://docs.astral.sh/uv/) (`brew install uv`).
+Both need a backend that holds a Claude API key, and this static version doesn't include one. Without it, request drafting falls back to a simple local draft (you'll see "Claude wasn't available, so we drafted it here"), and the adviser can't run.
 
-```sh
-cp .env.example .env      # then paste your Claude API key into .env
-uv run app.py
-```
+## What needs a backend
 
-Open http://127.0.0.1:5050. The map and both views work without a key. Only the adviser needs one.
+Everything here is static except the parts that ask a server for data. The code still calls these addresses:
+
+| Called from | Address | Used for |
+|---|---|---|
+| `app.js` | `/api/draft-request` | Claude drafting a request (falls back to a local draft) |
+| `map.js` | `/api/businesses` | The businesses on the in-app map and list, and the small preview maps |
+| `map-page.js` | `/api/meta`, `/api/business/<id>`, `.../needs`, `.../advise`, `/api/provider/<id>/map` | Everything on `map.html` |
+
+On a plain static host these addresses don't exist. The in-app map and list show an error message instead of businesses, and `map.html` can't load its panels. To make the maps work without a server, the sample businesses need to be bundled with the site as a file and read from there.
 
 ## Not built yet
 
-- Logins and payments. Anyone can open any owner view in this demo.
+- Real sign-in and payments. Login is a demo and nothing is checked or charged.
+- A backend. Dashboard data is saved in the browser only, so it isn't shared between people or devices.
+- Claude drafting and the adviser (see above).
+- Maps that work without a server (see above).
+- Real checks against official sources (Companies House, Food Standards Agency hygiene ratings).
+- Real messaging. The message box is a demo.
 - Ratings that other small businesses can browse.
-- Real data from official sources (FSA hygiene ratings, Companies House).
-- Messaging between providers and businesses.
-- Saving changes. Edits are kept in memory and reset when the server restarts.
 
 ---
 
@@ -52,7 +72,7 @@ Everything lives together in one `static/` folder, so every link between pages i
 |---|---|---|
 | `index.html` | The main app. One page that swaps between screens: the landing page, claiming a business page, the small business dashboard, company onboarding, the company dashboard, the in-app map and the account page. Which screen shows is set by the part after the `#` in the address (see "Screens inside index.html"). | Everyone |
 | `company.html` | Company login. In this demo the email and six-digit code are optional, so **Log in** always works. It signs the company in and sends them to onboarding (first time) or their dashboard. | Larger companies |
-| `map.html` | The full map page. **I run a small business** shows one business, the private guesses only the owner sees, the needs form and the Claude adviser. **I'm a provider** shows who wants help, with a colour-coded pin per business. Talks to the server (`/api/...`). | Small businesses and providers |
+| `map.html` | The full map page. **I run a small business** shows one business, the private guesses only the owner sees, the needs form and the adviser. **I'm a provider** shows who wants help, with a colour-coded pin per business. Needs a backend (see "What needs a backend"). | Small businesses and providers |
 
 All three pages share the same header (logo, **Small business** and **Company** switch, **Map** button), fonts and colours from `nehelp.css`. The logo always goes to `index.html#home`. The top bar and buttons turn **teal** on the small business side and **orange** on the company side.
 
@@ -83,7 +103,7 @@ All three pages share the same header (logo, **Small business** and **Company** 
 | `index.html#go-company` | Signs in as a company and opens onboarding or the dashboard. Used by the **Company** links on other pages. |
 | `#onboarding` | Small business: claim your page, confirm it's you, check the details |
 | `#b-issues` | Small business overview: status, issues, next steps, activity, companies ready to help, map preview |
-| `#b-new` | List a new issue (Claude turns your words into a request) |
+| `#b-new` | List a new issue |
 | `#b-map` | Map of nearby businesses, as a map or a list |
 | `#b-update` | Rename issues and change their status |
 | `#b-companies` | Offers waiting, companies working with you, finished jobs and handover guides |
@@ -138,7 +158,7 @@ flowchart TD
 1. Land on `index.html#home` and press **Get help now** (or **Small business** in the header).
 2. **Claim your page**: see the page we built from public information, confirm it's you (the number and code can be left blank in the demo), then check the details.
 3. Land on the **dashboard**. Status cards show Finance, Marketing and Employment at a glance.
-4. **List a new issue**: type or pick an idea, and Claude drafts a clear request (a simple local draft is used if the server isn't running). Check it, choose free, discounted or paid, and send it.
+4. **List a new issue**: type or pick an idea, and a draft request is made from your words. Check it, choose free, discounted or paid, and send it.
 5. Companies make offers. Under **Update company relationships** you can accept or decline. Accepting signs a short agreement.
 6. When the company finishes, open the **handover guide**.
 7. Along the way: **Map** shows nearby businesses, and **Account** holds your profile, notifications and your data.
@@ -154,6 +174,8 @@ flowchart TD
 
 ### The map page, step by step
 
+This page needs a backend (see "What needs a backend").
+
 1. Open `map.html` from **Map** in the header or **See the map** on the landing page.
 2. **I run a small business**: pick a business, read the guesses only the owner sees, fill in the needs form (tick **Show providers** to share a need) and press **What do I actually need?** for the adviser.
 3. **I'm a provider**: pick a company to see its colour-coded pins and the list of businesses, best leads first.
@@ -162,6 +184,11 @@ flowchart TD
 ### Where the data lives
 
 - **In the browser** (`localStorage`, key `nehelp-v3`): the small business and company dashboards, requests, offers, employees and accounts. **Reset demo data** in the avatar menu clears it, and **Delete my account** does the same.
-- **On the server** (`/api/...`, from `app.py`): the businesses on the maps (`/api/businesses`), the request drafts (`/api/draft-request`), and everything on `map.html` (`/api/meta`, `/api/business/<id>`, `.../needs`, `.../advise`, `/api/provider/<id>/map`).
+- **From a server** (not included in this static version): the businesses on the maps and everything on `map.html`. See "What needs a backend" for the exact addresses.
 - The dashboards and `map.html` use separate demo data for now, so a request sent from a dashboard won't show up as a pin on `map.html` yet.
 
+## Credits
+
+- Food hygiene ratings: Food Standards Agency, Open Government Licence v3.0.
+- Business data on the map: © OpenStreetMap contributors (ODbL).
+- Maps: [Leaflet](https://leafletjs.com/).
