@@ -1,6 +1,6 @@
 // NEhelp: map (or list) of local businesses, for both small businesses and companies
 // Loaded as a plain script; everything shares one global scope, in the order index.html lists.
-// Data comes from /api/businesses, which only returns public facts (never private needs or guesses).
+// Data comes from data/businesses.js, which only holds public facts (never private needs or guesses).
 
 var bizMap=null,bizData=null;
 
@@ -21,8 +21,8 @@ if(p.hygiene_rating!=null)t.push(pill("Food hygiene "+p.hygiene_rating+"/5"+(p.h
 if(b.real)t.push(pill("Real business, name changed"));
 return'<div class="row" style="gap:6px;margin-top:8px">'+t.join("")+"</div>"}
 
-function loadBiz(done){if(bizData)return done(bizData);
-fetch("/api/businesses").then(function(r){return r.json()}).then(function(list){bizData=list;done(list)}).catch(function(){toast("Couldn’t load businesses. Is the server running?")})}
+function loadBiz(done){if(bizData)return done(bizData);if(window.BUSINESSES){bizData=window.BUSINESSES;return done(bizData)}
+fetch("api/businesses").then(function(r){return r.json()}).then(function(list){bizData=list;done(list)}).catch(function(){toast("Couldn’t load businesses. Is the server running?")})}
 
 // Called after render() whenever a map view is on screen.
 function drawBizMap(){var listEl=document.getElementById("bizlist");
@@ -40,7 +40,7 @@ if(pts.length)bizMap.fitBounds(pts,{padding:[30,30]})})}
 // Small preview map used on the landing page and both dashboards (the #minimap card).
 var miniMap=null;
 function drawMini(){var el=document.getElementById("minimap");if(!el)return;
-if(typeof L==="undefined"){el.innerHTML='<p class="hint" style="padding:16px">The map needs an internet connection. <a href="/map.html">Open the map page</a>.</p>';return}
+if(typeof L==="undefined"){el.innerHTML='<p class="hint" style="padding:16px">The map needs an internet connection. <a href="map.html">Open the map page</a>.</p>';return}
 if(miniMap){try{miniMap.remove()}catch(e){}miniMap=null}
 miniMap=L.map(el,{scrollWheelZoom:false}).setView([54.975,-1.6],12);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · Hygiene ratings: FSA, OGL v3.0'}).addTo(miniMap);

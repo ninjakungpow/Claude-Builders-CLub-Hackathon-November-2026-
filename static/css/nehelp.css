@@ -205,3 +205,19 @@ details p{margin-top:6px;color:var(--mu);font-size:15px}
 a.btn,a.tbtn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
 a.tbtn{color:var(--tx)}
 a.btn.out{color:var(--pr)}
+
+/* Service colours: each service has its own colour (set as --svc by svc() in state.js) */
+.pill.svc{background:color-mix(in srgb,var(--svc) 14%,transparent);color:color-mix(in srgb,var(--svc) 80%,var(--tx));font-weight:600}
+.chip .sdot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--svc);margin-right:8px;vertical-align:-1px}
+.chip[style*="--svc"][aria-pressed="true"]{border-color:var(--svc);background:color-mix(in srgb,var(--svc) 14%,var(--sf))}
+
+/* Message threads (js/messages.js) */
+.convo{margin-bottom:16px}
+.thread{display:flex;flex-direction:column;gap:8px}
+.msg{max-width:80%;padding:10px 14px;border-radius:14px;background:var(--sf2)}
+.msg.me{align-self:flex-end;background:var(--prs)}
+.msg small{display:block;color:var(--mu);font-size:12px;margin-bottom:2px}
+.msg p{margin:0}
+
+/* Let hero columns shrink on small screens so lists inside them wrap instead of overflowing */
+.hero>*{min-width:0}

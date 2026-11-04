@@ -3,53 +3,122 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>NEhelp · Company login</title>
+<title>NEhelp · For companies</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/nehelp.css">
 </head>
-<body>
+<!-- Company sign-up and log-in. Shares saved state with index.html, so it carries straight into the company dashboard. -->
+<body data-side="company">
 <header class="top">
   <div></div>
-  <a class="brand" href="/#home" aria-label="NEhelp home" style="text-decoration:none"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--ink)"/><circle cx="12.5" cy="16" r="7" fill="#14B5AE"/><circle cx="19.5" cy="16" r="7" fill="#F2A541" opacity=".92"/></svg><span>NE<span class="hp">help</span></span></a>
-  <div style="justify-self:end"><a class="tbtn" href="/map.html">Map</a></div>
+  <a class="brand" href="index.html#home" aria-label="NEhelp home" style="text-decoration:none"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--ink)"/><circle cx="12.5" cy="16" r="7" fill="#14B5AE"/><circle cx="19.5" cy="16" r="7" fill="#F2A541" opacity=".92"/></svg><span>NE<span class="hp">help</span></span></a>
+  <div class="right"><a class="tbtn" href="map.html" style="text-decoration:none">Map</a></div>
 </header>
-<main class="land" style="max-width:960px">
+<main class="land" style="max-width:1040px">
   <div class="hero" style="gap:40px;align-items:start">
     <div>
-      <h1>Help local businesses on your terms.</h1>
-      <p class="lead">Log in to see requests from small businesses in the North East that fit your team, make offers, and keep every agreement in one place.</p>
-      <div class="pun mini" style="margin-top:28px" role="img" aria-label="NEhelp sounds like any help, and it means North East help"><span class="t"><span><span class="am">NE</span><span class="sg">help</span></span></span><span class="ar">→</span><span class="t"><span>any help</span></span><span class="ar">→</span><span class="t"><span>North East help</span></span></div>
+      <h1>Lend your team’s skills to local businesses.</h1>
+      <p class="lead">Small businesses across the North East tell us what they’re stuck on. You pick the jobs that fit your team, contact the owner and agree the help: free, discounted or paid.</p>
+      <ol class="how" style="margin-top:24px"><li><b>Sign up in a minute</b><span>Say what your team is good at and where you work.</span></li><li><b>See requests that fit</b><span>Colour-coded by service, so you spot your jobs fast.</span></li><li><b>Contact the owner and offer help</b><span>Messages and agreements stay in one place.</span></li></ol>
     </div>
-    <form class="panel" id="login" novalidate>
-      <h2 style="font-size:24px;margin-bottom:16px">Company login</h2>
-      <label class="field"><span>Work email (optional in this demo)</span><input type="email" id="email" placeholder="partnerships@yourcompany.co.uk" autocomplete="email"></label>
-      <label class="field"><span>Six-digit code (optional in this demo)</span><input type="text" id="code" class="codes" inputmode="numeric" maxlength="6" placeholder="000000" autocomplete="one-time-code"><span class="hint" style="font-weight:400;margin-top:6px">You can leave this blank and carry on.</span></label>
-            <div class="row"><button class="btn pri" type="submit">Log in</button></div>
-      <p class="hint" style="margin-top:20px"><a href="/map.html" style="color:var(--pr);font-weight:600">Browse the map</a> · New to NEhelp? <a href="/" id="join" style="color:var(--pr);font-weight:600">Join as a company</a></p>
-    </form>
+    <div class="panel">
+      <div class="seg" role="tablist" aria-label="Sign up or log in" style="margin-bottom:18px">
+        <button role="tab" id="tab-up" aria-pressed="true">Sign up</button>
+        <button role="tab" id="tab-in" aria-pressed="false">Log in</button>
+      </div>
+
+      <form id="signup" novalidate>
+        <h2 style="font-size:22px;margin-bottom:14px">Create a company account</h2>
+        <label class="field"><span>Company name</span><input type="text" id="su-name" placeholder="Tyne Digital" autocomplete="organization"></label>
+        <label class="field"><span>Your name</span><input type="text" id="su-person" placeholder="Jordan Reed" autocomplete="name"></label>
+        <label class="field"><span>Work email</span><input type="email" id="su-email" placeholder="you@yourcompany.co.uk" autocomplete="email"></label>
+        <div class="field"><span>What can your team help with?</span><div class="chips" id="su-svc"></div></div>
+        <div class="field"><span>Where in the North East?</span><div class="chips" id="su-where"></div></div>
+        <div class="field"><span>Kinds of help you’ll give</span><div class="chips" id="su-help"></div></div>
+        <p class="err" id="su-err"></p>
+        <div class="row"><button class="btn cta" type="submit">Create account</button></div>
+        <p class="hint" style="margin-top:12px">Demo: nothing is checked or sent. Blank fields use sample details.</p>
+      </form>
+
+      <form id="login" novalidate hidden>
+        <h2 style="font-size:22px;margin-bottom:14px">Welcome back</h2>
+        <label class="field"><span>Work email</span><input type="email" id="li-email" placeholder="you@yourcompany.co.uk" autocomplete="email"></label>
+        <div class="row"><button class="btn pri" type="submit">Log in</button></div>
+        <p class="hint" style="margin-top:12px">Demo: any email works, or leave it blank.</p>
+      </form>
+
+      <p class="hint" style="margin-top:20px">Run a small business? <a href="index.html" style="color:var(--pr);font-weight:600">Get help instead</a></p>
+    </div>
   </div>
 </main>
 
 <script src="js/state.js"></script>
 <script>
-// Uses the same saved state as the main app, so logging in here carries straight into the company dashboard.
 (function () {
-  function enter(email) {
-    if (email) S.company.email = email;
-    S.role = "company";
-    save();
-    location.href = "/#" + (S.company.onboarded ? "c-requests" : "c-onboarding");
+  var DISTRICTS = ["Newcastle", "Gateshead", "North Tyneside", "Sunderland", "Durham", "Northumberland"];
+  var picked = { svc: CATS.slice(0, 3), where: ["Newcastle", "Gateshead"], help: ["Free", "Discounted"] };
+
+  function chips(id, key, options) {
+    var box = document.getElementById(id);
+    box.innerHTML = options.map(function (o) {
+      var colour = SVC[o] ? ' style="--svc:' + SVC[o] + '"' : "";
+      return '<button type="button" class="chip" data-k="' + key + '" data-v="' + esc(o) + '" aria-pressed="' + (picked[key].indexOf(o) > -1) + '"' + colour + ">" +
+        (SVC[o] ? '<i class="sdot"></i>' : "") + esc(o) + "</button>";
+    }).join("");
   }
+  function drawChips() { chips("su-svc", "svc", CATS); chips("su-where", "where", DISTRICTS); chips("su-help", "help", ["Free", "Discounted", "Paid"]); }
+  drawChips();
+
+  document.addEventListener("click", function (e) {
+    var c = e.target.closest(".chip[data-k]");
+    if (!c) return;
+    var list = picked[c.dataset.k], at = list.indexOf(c.dataset.v);
+    if (at > -1) list.splice(at, 1); else list.push(c.dataset.v);
+    drawChips();
+  });
+
+  function tab(up) {
+    document.getElementById("signup").hidden = !up;
+    document.getElementById("login").hidden = up;
+    document.getElementById("tab-up").setAttribute("aria-pressed", String(up));
+    document.getElementById("tab-in").setAttribute("aria-pressed", String(!up));
+  }
+  document.getElementById("tab-up").onclick = function () { tab(true); };
+  document.getElementById("tab-in").onclick = function () { tab(false); };
+  if (location.hash === "#login") tab(false);
+
+  function enter() {
+    S.role = "company";
+    S.company.onboarded = true;
+    S.company.terms = true;
+    COMP.tyne = S.company.name;
+    save();
+    location.href = "index.html#c-requests";
+  }
+  function val(id) { return document.getElementById(id).value.trim(); }
+
+  document.getElementById("signup").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var err = document.getElementById("su-err");
+    if (!picked.svc.length) { err.textContent = "Pick at least one service."; return; }
+    if (!picked.where.length) { err.textContent = "Pick at least one place."; return; }
+    if (!picked.help.length) { err.textContent = "Pick at least one kind of help."; return; }
+    var c = S.company;
+    c.name = val("su-name") || c.name;
+    c.email = val("su-email") || c.email;
+    c.areas = picked.svc.slice();
+    c.districts = picked.where.slice();
+    c.help = { Free: picked.help.indexOf("Free") > -1, Discounted: picked.help.indexOf("Discounted") > -1, Paid: picked.help.indexOf("Paid") > -1 };
+    if (val("su-person")) S.accounts.company.name = val("su-person");
+    if (c.email) S.accounts.company.email = c.email;
+    enter();
+  });
   document.getElementById("login").addEventListener("submit", function (e) {
     e.preventDefault();
-    // Demo: the email and code are optional, so there are never any errors here.
-    enter(document.getElementById("email").value.trim());
-  });
-  document.getElementById("join").addEventListener("click", function (e) {
-    e.preventDefault();
-    enter("");
+    if (val("li-email")) S.accounts.company.email = val("li-email");
+    enter();
   });
 })();
 </script>

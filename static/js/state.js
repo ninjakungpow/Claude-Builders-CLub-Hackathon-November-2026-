@@ -1,7 +1,9 @@
 // NEhelp: demo data, saved state and small helpers
 // Loaded as a plain script; everything shares one global scope, in the order index.html lists.
 
-var KEY="nehelp-v3",CATS=["Finance","Marketing","Employment"],COMP={tyne:"Tyne Digital",nu:"Northumbria University"};
+var KEY="nehelp-v4",CATS=["Finance","Marketing","Employment","Website & tech","Legal","Design"],
+// One colour per service, used on every pill, chip and card so services are easy to spot.
+SVC={"Finance":"#2563EB","Marketing":"#DB2777","Employment":"#7C3AED","Website & tech":"#059669","Legal":"#475569","Design":"#D97706"},COMP={tyne:"Tyne Digital",nu:"Northumbria University"};
 function seedBase(){return{role:null,claimed:false,business:{name:"The Corner Café",kind:"Café",area:"Newcastle",hours:"Mon to Sat, 8am to 5pm",address:"12 High Street, Newcastle"},
 issues:[
 {id:"i1",biz:"me",title:"Saturday staff",cat:"Employment",desc:"Two part-time students from March.",check:["Post the role","Shortlist candidates","Arrange interviews"],help:"Free",hours:4,status:"inprogress",company:"nu",employee:null,fav:false},
@@ -10,7 +12,7 @@ issues:[
 {id:"i4",biz:"Harbour Bakery",kind:"Bakery",area:"Tynemouth",title:"Invoice setup",cat:"Finance",desc:"Needs a simple invoice template and a way to track unpaid bills.",check:["Create invoice template","Track unpaid bills","Show how to send reminders"],help:"Paid",hours:3,status:"open",company:null,employee:null,fav:false},
 {id:"i5",biz:"Tyne Cycles",kind:"Bike shop",area:"Gateshead",title:"Two part-time hires",cat:"Employment",desc:"Weekend mechanics for the summer season.",check:["Write the job post","Screen applicants","Set up trial shifts"],help:"Free",hours:4,status:"open",company:null,employee:null,fav:false},
 {id:"i6",biz:"Ouseburn Print",kind:"Print shop",area:"Ouseburn",title:"Menu design",cat:"Marketing",desc:"A new menu layout for a local restaurant client.",check:["Draft layout","Pick fonts and colours","Send print-ready file"],help:"Discounted",hours:6,status:"inprogress",company:"tyne",employee:"e1",fav:false}],
-employees:[{id:"e1",name:"Sam Okafor",specialty:"Marketing",available:true},{id:"e2",name:"Dan Whitfield",specialty:"Marketing",available:true},{id:"e3",name:"Priya Nair",specialty:"Finance",available:true},{id:"e4",name:"Ava Collins",specialty:"Finance",available:true},{id:"e5",name:"Lee Hart",specialty:"Employment",available:true}],
+employees:[{id:"e1",name:"Sam Okafor",specialty:"Marketing",available:true},{id:"e2",name:"Dan Whitfield",specialty:"Marketing",available:true},{id:"e3",name:"Priya Nair",specialty:"Finance",available:true},{id:"e4",name:"Ava Collins",specialty:"Finance",available:true},{id:"e5",name:"Lee Hart",specialty:"Employment",available:true},{id:"e6",name:"Mia Chen",specialty:"Website & tech",available:true},{id:"e7",name:"Tom Ridley",specialty:"Legal",available:true},{id:"e8",name:"Zara Ali",specialty:"Design",available:true}],
 ui:{view:"grid",hideClosed:false}}}
 // Adds the fields the company side needs: district, price, signed date, and the company profile.
 function seed(){var s=seedBase(),D={i1:"Newcastle",i2:"Newcastle",i3:"Newcastle",i4:"North Tyneside",i5:"Gateshead",i6:"Newcastle"};
@@ -19,12 +21,18 @@ function g(id){return s.issues.filter(function(i){return i.id===id})[0]}
 g("i1").signed="1 Oct 2026";g("i6").price=240;g("i6").signed="28 Oct 2026";
 s.issues.push({id:"i7",biz:"Roker Fish Bar",kind:"Fish bar",area:"Sunderland",district:"Sunderland",title:"Cash-flow forecast",cat:"Finance",desc:"A simple forecast so the owner knows when quiet months bite.",check:["Gather last year’s takings","Build a 12-month forecast","Explain it in plain English"],help:"Paid",hours:4,price:null,signed:null,note:"",status:"open",company:null,employee:null,fav:false},
 {id:"i8",biz:"Durham Dog Grooming",kind:"Dog groomer",area:"Durham",district:"Durham",title:"Booking website",cat:"Marketing",desc:"A one-page site with online booking and prices.",check:["Design a one-page site","Add online booking","Connect a payment link"],help:"Discounted",hours:6,price:null,signed:null,note:"",status:"open",company:null,employee:null,fav:false});
+s.issues.push({id:"i9",biz:"Jesmond Florist",kind:"Florist",area:"Jesmond",district:"Newcastle",title:"Shop lease check",cat:"Legal",desc:"Wants someone to read a new shop lease before signing.",check:["Read the lease","Flag risky clauses","Explain it in plain English"],help:"Free",hours:2,price:null,signed:null,note:"",status:"open",company:null,employee:null,fav:false},
+{id:"i10",biz:"Heaton Barbers",kind:"Barber",area:"Heaton",district:"Newcastle",title:"Online booking",cat:"Website & tech",desc:"Set up online booking and a card reader.",check:["Pick a booking tool","Connect it to Google","Set up the card reader"],help:"Discounted",hours:4,price:null,signed:null,note:"",status:"open",company:null,employee:null,fav:false},
+{id:"i11",biz:"Gateshead Deli",kind:"Deli",area:"Gateshead",district:"Gateshead",title:"New logo and menu",cat:"Design",desc:"A fresh logo and a printable menu.",check:["Sketch three logo ideas","Design the menu","Send print-ready files"],help:"Paid",hours:6,price:null,signed:null,note:"",status:"open",company:null,employee:null,fav:false});
+s.messages=[{id:"m1",biz:"me",issue:"i1",from:"company",company:"nu",text:"Hi! Two of our students can start in March. Does Saturday 9 to 5 work for you?",at:"2 Nov 2026",read:false},
+{id:"m2",biz:"me",issue:"i3",from:"company",company:"tyne",text:"We saw your social media request. Happy to take photos one morning next week if that suits?",at:"3 Nov 2026",read:false},
+{id:"m3",biz:"Harbour Bakery",issue:"i4",from:"company",company:"tyne",text:"Hello, our finance team can set up invoices for you this month.",at:"3 Nov 2026",read:true}];
 s.business.district="Newcastle";s.ui.onlyMine=true;
-s.company={name:"Tyne Digital",num:"",email:"",areas:["Finance","Marketing","Employment"],districts:["Newcastle","Gateshead","North Tyneside"],hours:40,help:{Free:true,Discounted:true,Paid:true},terms:true,onboarded:false};
+s.company={name:"Tyne Digital",num:"",email:"",areas:CATS.slice(),districts:["Newcastle","Gateshead","North Tyneside"],hours:40,help:{Free:true,Discounted:true,Paid:true},terms:true,onboarded:false};
 s.accounts={business:{name:"Alex Morgan",email:"alex@cornercafe.co.uk",phone:"0191 555 0142",title:"Owner",notify:{offers:true,messages:true,weekly:false}},company:{name:"Jordan Reed",email:"jordan@tynedigital.co.uk",phone:"0191 555 0177",title:"Partnerships lead",notify:{offers:true,messages:true,weekly:true}}};
 return s}
 var S;try{S=JSON.parse(localStorage.getItem(KEY));}catch(e){S=null}
-if(!S||!S.issues||!S.company||!S.accounts)S=seed();
+if(!S||!S.issues||!S.company||!S.accounts||!S.messages)S=seed();
 COMP.tyne=S.company.name;
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 var $=function(s){return document.querySelector(s)};
@@ -44,9 +52,11 @@ function freeIn(c){return S.employees.filter(function(e){return e.specialty===c&
 var BL={draft:["Draft",""],open:["Looking for a company","warn"],offered:["Offer waiting","warn"],inprogress:["In progress","good"],done:["Done","good"],notneeded:["Not needed",""]};
 var CL={open:["Needs an employee","warn"],offered:["Offer sent",""],inprogress:["In progress","good"],done:["Done","good"]};
 function pill(t,c){return'<span class="pill '+(c||"")+'">'+esc(t)+"</span>"}
+function svc(c){return'<span class="pill svc" style="--svc:'+(SVC[c]||"#475569")+'">'+esc(c)+"</span>"}
 function catStatus(c){var a=mine().filter(function(i){return i.cat===c});function f(s){return a.filter(function(i){return i.status===s})[0]}
 var x;if(x=f("offered"))return["Offer waiting","warn"];if(x=f("open"))return["Looking for a company","warn"];if(x=f("inprogress"))return[COMP[x.company]||"In progress","good"];if(x=f("draft"))return["Draft",""];return["Not needed",""]}
-function nav(){return S.role==="business"?[["b-issues","Overview"],["b-new","List new issue"],["b-map","Map"],["b-update","Update issues"],["b-companies","Update company relationships"],["b-account","Account"]]:[["c-requests","Overview"],["c-map","Map"],["c-add","Add new employee"],["c-specialty","Update specialty"],["c-companies","View companies working with"],["c-profile","Company profile"],["c-account","Account"]]}
+function unread(){return S.messages.filter(function(m){return m.biz==="me"&&m.from==="company"&&!m.read}).length}
+function nav(){var u=unread();return S.role==="business"?[["b-issues","Overview"],["b-new","Ask for help"],["b-messages","Messages"+(u?" ("+u+")":"")],["b-companies","Offers"],["b-update","Your requests"],["b-map","Map"],["b-account","Account"]]:[["c-requests","Requests"],["c-messages","Contact businesses"],["c-companies","Businesses you work with"],["c-add","Your team"],["c-map","Map"],["c-profile","Company profile"],["c-account","Account"]]}
 var co={step:1,err:""},ob={step:1,mode:"ch",sent:false,err:""},req=null,openId=null,dlgKind=null,newErr="";
 
 function menu(){var m=$("#menu"),biz=S.role==="business";
