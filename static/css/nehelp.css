@@ -221,3 +221,13 @@ a.btn.out{color:var(--pr)}
 
 /* Let hero columns shrink on small screens so lists inside them wrap instead of overflowing */
 .hero>*{min-width:0}
+
+/* Map polish: quieter tiles so pins stand out, and controls and popups that match the site */
+.leaflet-container{font-family:inherit}
+.leaflet-tile-pane{filter:saturate(.3) contrast(.9) brightness(1.05)}
+.leaflet-container .leaflet-bar{border:1px solid var(--bd);border-radius:8px;box-shadow:0 1px 3px rgb(18 38 58/.16);overflow:hidden}
+.leaflet-container .leaflet-bar a{background:var(--sf);color:var(--tx);border-color:var(--bd);width:36px;height:36px;line-height:36px}
+.leaflet-container .leaflet-bar a:hover{background:var(--sf2)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--sf);color:var(--tx)}
+.leaflet-popup-content-wrapper{border-radius:12px;box-shadow:0 4px 16px rgb(18 38 58/.2)}
+.leaflet-popup-content{font:14px/1.45 "Plus Jakarta Sans",system-ui,sans-serif;margin:12px 14px}
